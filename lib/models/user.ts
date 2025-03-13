@@ -13,7 +13,7 @@ interface IUser extends Document {
    profile: string;
    verificationHash?: string;
    oauthProvider: string;
-   isAdmin: { type: Boolean; default: false };
+   isAdmin: { type: boolean; default: false };
    wishlist: IWishlist[];
    bag: IBag[];
 }

@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import Order from '~/lib/models/orders';
-import ProductModel from '~/lib/models/rooms';
 import connectMongo from '~/lib/mongodb';
-ProductModel;
 
 export async function GET() {
    try {

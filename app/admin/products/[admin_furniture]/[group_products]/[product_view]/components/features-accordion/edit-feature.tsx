@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import bin from '~/public/icons/bin.svg';
 import featuresIcon from '~/public/icons/features.svg';
 import check from '~/public/icons/check.svg';
 import loader from '~/public/icons/loading-white.svg';
@@ -37,8 +36,8 @@ const EditFeature = (props: any) => {
    const handleEditFeatures = async (e: any) => {
       e.preventDefault();
       if (submitting) return;
-      let check = editType === 'Lists' ? !feature : !feature || !editSentence;
-      let checkArray = editType === 'Lists' ? editLists?.length === 0 : false;
+      const check = editType === 'Lists' ? !feature : !feature || !editSentence;
+      const checkArray = editType === 'Lists' ? editLists?.length === 0 : false;
 
       if (check) {
          setError('All fields are required');

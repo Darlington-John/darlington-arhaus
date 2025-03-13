@@ -64,7 +64,7 @@ const FurniturePage = () => {
          updateButtonVisibility();
 
          return () => {
-            //@ts-expect-error
+            //@ts-expect-error: cause why not
             sliderInstance?.current?.off(
                'slideChanged',
                updateButtonVisibility

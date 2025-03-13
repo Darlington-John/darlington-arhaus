@@ -7,11 +7,11 @@ if (!MONGODB_URI) {
       'Please define the MONGODB_URI environment variable inside .env.local'
    );
 }
-//@ts-expect-error
+//@ts-expect-error: cause why not
 let cached = global.mongoose;
 
 if (!cached) {
-   //@ts-expect-error
+   //@ts-expect-error: cause why not
    cached = global.mongoose = { conn: null, promise: null };
 }
 

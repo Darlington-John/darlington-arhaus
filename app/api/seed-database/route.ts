@@ -7,7 +7,7 @@ export async function POST() {
    try {
       if (mongoose.connection.readyState === 0) {
          await mongoose.connect(MONGODB_URI, {
-            //@ts-expect-error
+            //@ts-expect-error: cause why not
             useNewUrlParser: true,
             useUnifiedTopology: true,
          });
