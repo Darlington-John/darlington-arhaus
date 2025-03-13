@@ -1,11 +1,11 @@
-import NextAuth, { AuthOptions } from 'next-auth';
+import NextAuth, { AuthOptions, NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import User from '~/lib/models/user';
 import connectMongo from '~/lib/mongodb';
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
    providers: [
       GoogleProvider({
          clientId: process.env.GOOGLE_CLIENT_ID as string,
