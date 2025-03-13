@@ -143,19 +143,19 @@ const Footer = () => {
          link: [
             {
                dir: 'living',
-               href: loading ? '/' : rooms[0]?._id,
+               href: loading ? '/' : rooms?.[0]?._id ?? '/',
             },
             {
                dir: 'bedroom',
-               href: loading ? '/' : rooms[3]?._id,
+               href: loading ? '/' : rooms?.[3]?._id ?? '/',
             },
             {
                dir: 'lighting',
-               href: loading ? '/' : rooms[2]?._id,
+               href: loading ? '/' : rooms?.[2]?._id ?? '/',
             },
             {
                dir: 'dining',
-               href: loading ? '/' : rooms[1]?._id,
+               href: loading ? '/' : rooms?.[1]?._id ?? '/',
             },
          ],
       },

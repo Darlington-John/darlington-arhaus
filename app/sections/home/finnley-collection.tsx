@@ -13,7 +13,7 @@ const FinnleyCollection = () => {
             <Image src={room} alt="" className="w-full " />
             {!loading && (
                <Link
-                  href={rooms[1]?._id}
+                  href={rooms?.[1]?._id ?? '/'}
                   className="p-5 flex items-center justify-center  bg-white text-darkGrey  uppercase  text-xs font-semibold  w-[190px]  h-[45px]
             lg:w-auto lg:h-auto  lg:p-3  lg:rounded-full 
             hover:bg-black  hover:text-white duration-150 absolute bottom-10  right-10 z-10 rounded-2xl lg:bottom-4 lg:right-4 "
@@ -39,7 +39,7 @@ const FinnleyCollection = () => {
             {!loading && (
                <Link
                   className="p-5 flex items-center justify-center   text-white   uppercase  text-xs font-semibold  w-[190px]  h-[45px] hover:bg-white  hover:text-black  duration-150  border border-white "
-                  href={rooms[1]?._id}
+                  href={rooms?.[1]?._id ?? '/'}
                >
                   shop dining
                </Link>

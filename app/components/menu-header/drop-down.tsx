@@ -71,7 +71,7 @@ const Dropdown = (props: any) => {
             >
                <div className="flex gap-6 w-[30%]  shrink-0 flex-col  xl:gap-3 ">
                   <h1 className="text-xs  text-black  uppercase tracking-widest">
-                     {rooms[activeDropdown].content}
+                     {rooms?.[activeDropdown].content ?? ''}
                   </h1>
                   <div className="w-full flex justify-between flex-col gap-5 xl:gap-3 items-start ">
                      {main?.categories.map((link: any, i: number) => (

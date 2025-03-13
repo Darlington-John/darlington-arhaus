@@ -19,7 +19,7 @@ const Cozy = () => {
             </h1>
             {!loading && (
                <Link
-                  href={rooms[3]?._id}
+                  href={rooms?.[3]?._id ?? '/'}
                   className="p-5 flex items-center justify-center  bg-white text-darkGrey  uppercase  text-xs font-semibold  w-[190px]  h-[45px] hover:bg-black  hover:text-white duration-150 absolute bottom-10  "
                >
                   shop bedroom
@@ -37,7 +37,7 @@ const Cozy = () => {
             </h1>
             {!loading && (
                <Link
-                  href={rooms[1]?._id}
+                  href={rooms?.[1]?._id ?? '/'}
                   className="p-5 flex items-center justify-center  bg-white text-darkGrey  uppercase  text-xs font-semibold  w-[190px]  h-[45px] hover:bg-black  hover:text-white duration-150 absolute bottom-10  "
                >
                   shop dining

@@ -2,22 +2,20 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectMongo from '~/lib/mongodb';
 import ProductModel from '~/lib/models/rooms';
 
-export async function GET(
-   req: NextRequest,
-   {
-      params,
-   }: {
-      params: {
-         admin_furniture: string;
-         group_products: string;
-         product_view: string;
-      };
-   }
-) {
+interface Context {
+   params: {
+      admin_furniture: string;
+      group_products: string;
+      product_view: string;
+   };
+}
+
+export async function GET(req: NextRequest, context: Context) {
    try {
       await connectMongo();
 
-      const { admin_furniture, group_products, product_view } = await params;
+      const { admin_furniture, group_products, product_view } =
+         await context.params;
 
       const adminFurniture = await ProductModel.findById(admin_furniture);
       if (!adminFurniture) {
