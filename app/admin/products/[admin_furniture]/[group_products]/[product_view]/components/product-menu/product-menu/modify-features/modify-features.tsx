@@ -50,8 +50,8 @@ const ModifyFeatures = (props: any) => {
    const handleSetFeatures = async (e: any) => {
       e.preventDefault();
       if (submitting) return;
-      let check = type === 'Lists' ? !feature : !feature || !sentence;
-      let checkArray = type === 'Lists' ? lists.length === 0 : false;
+      const check = type === 'Lists' ? !feature : !feature || !sentence;
+      const checkArray = type === 'Lists' ? lists.length === 0 : false;
 
       if (check) {
          setError('All fields are required');
