@@ -2,14 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import ProductModel from '~/lib/models/rooms';
 import connectMongo from '~/lib/mongodb';
 
-export async function GET(
-   req: NextRequest,
-   { params }: { params: { room_type: string } }
-) {
+export async function GET(req: NextRequest) {
    try {
       await connectMongo();
-
-      const { room_type } = await params;
+      const url = new URL(req.url);
+      const paths = url.pathname.split('/');
+      const room_type = paths[3];
 
       const product = await ProductModel.findById(room_type);
 

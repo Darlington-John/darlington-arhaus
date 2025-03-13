@@ -3,14 +3,13 @@ import { Types } from 'mongoose';
 import connectMongo from '~/lib/mongodb';
 import ProductModel from '~/lib/models/rooms';
 
-export async function GET(
-   req: NextRequest,
-   { params }: { params: { room_type: string; furniture_type: string } }
-) {
+export async function GET(req: NextRequest) {
    try {
       await connectMongo();
-
-      const { room_type, furniture_type } = await params;
+      const url = new URL(req.url);
+      const paths = url.pathname.split('/');
+      const room_type = paths[3];
+      const furniture_type = paths[4];
 
       const roomCategory = await ProductModel.findById(room_type);
       if (!roomCategory) {

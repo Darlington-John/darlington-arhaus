@@ -2,13 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectMongo from '~/lib/mongodb';
 import User from '~/lib/models/user';
 
-export async function GET(
-   req: NextRequest,
-   { params }: { params: { userId: string } }
-) {
+export async function GET(req: NextRequest) {
    try {
       await connectMongo();
-      const { userId } = await params;
+      const url = new URL(req.url);
+      const paths = url.pathname.split('/');
+      const userId = paths[4];
 
       const user = await User.findById(userId);
       if (!user) {

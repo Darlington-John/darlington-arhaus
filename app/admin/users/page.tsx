@@ -17,18 +17,18 @@ const Users = () => {
       user: IUser;
    };
 
-   const filteredUsers = users?.filter((u) => u._id !== user?._id);
+   // const filteredUsers = users?.filter((u) => u._id !== user?._id);
    return (
       <PageWrapper fetching={usersLoading} errorFetching={false}>
          <section className="flex flex-col gap-8  py-6 px-4 ">
             <div className="flex items-center justify-between w-full 2xs:flex-col 2xs:gap-2 2xs:items-start ">
                <h1 className="flex text-3xl neue-thin uppercase md:text-2xl  sm:text-xl">
-                  Users ({filteredUsers?.length})
+                  Users ({users?.length})
                </h1>
             </div>
-            {filteredUsers?.length > 0 ? (
+            {users?.length > 0 ? (
                <div className="flex gap-4 w-full flex-wrap">
-                  {filteredUsers.map((data) => (
+                  {users.map((data) => (
                      <UserCard {...data} key={data?._id} />
                   ))}
                </div>

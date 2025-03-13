@@ -71,10 +71,7 @@ const statesData: Record<string, string[]> = {
       'Lekki-Epe Expressway',
       'Lekki/Ajah',
       'Lekki/Lagos',
-      'Ikeja',
-      'Ikotun',
       'Ilupeju',
-      'Isolo',
       'Mafoluku',
       'Magboro-Akeran',
       'Magodo',
@@ -86,7 +83,6 @@ const statesData: Record<string, string[]> = {
       'Oke-Afa',
       'Okoko',
       'Okokomaiko',
-      'Okota',
       'Okota',
       'Oshodi',
       'Oshodi Apapa',
@@ -112,7 +108,8 @@ const statesData: Record<string, string[]> = {
       'Warri',
       'Yaba',
    ],
-   Ogun: ['sango otta', 'sango otta'],
+
+   Ogun: ['sango otta', 'sango otta 2'],
    Osun: ['Ilesha', 'Oshogbo'],
    Rivers: ['Eleme onne'],
 };
