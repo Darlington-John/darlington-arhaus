@@ -1,17 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Types } from 'mongoose';
 import connectMongo from '~/lib/mongodb';
 import ProductModel from '~/lib/models/rooms';
-import { console } from 'inspector';
 
-export async function GET(
-   req: NextRequest,
-   { params }: { params: { admin_furniture: string; group_products: string } }
-) {
+export async function GET(req: NextRequest) {
    try {
       await connectMongo();
-
-      const { admin_furniture, group_products } = await params;
+      const url = new URL(req.url);
+      const paths = url.pathname.split('/');
+      const admin_furniture = paths[3];
+      const group_products = paths[4];
 
       const roomCategory = await ProductModel.findById(admin_furniture);
       if (!roomCategory) {
