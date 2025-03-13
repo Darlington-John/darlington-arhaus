@@ -5,7 +5,7 @@ import PageWrapper from '../admin/components/page-wrapper';
 import { motion } from 'framer-motion';
 import BaggedProducts from './bagged-products/bagged-products';
 import CheckOut from './checkout/checkout';
-const bag = () => {
+const Bag = () => {
    const { user, loading } = useUser();
    const [bag, setBag] = useState([]);
    const [fetching, setFetching] = useState(true);
@@ -124,4 +124,4 @@ const bag = () => {
    );
 };
 
-export default bag;
+export default Bag;

@@ -136,11 +136,9 @@ const Restock = (props: any) => {
             </div>
 
             <h1 className="text-xs font-bold text-[#1e372f]">
-               {/* @ts-ignore */}
                {productData?.options[selectedOption]?.stock?.in_stock
                   ? 'In stock'
-                  : /* @ts-ignore */
-                    `In Stock in ${productData?.options[selectedOption]?.stock?.when_in_stock}`}
+                  : `In Stock in ${productData?.options[selectedOption]?.stock?.when_in_stock}`}
             </h1>
          </div>
          <button

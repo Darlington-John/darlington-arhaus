@@ -214,7 +214,6 @@ const CategoryCard = (props: any) => {
                      </h1>
                      <div className="flex items-center gap-2 ">
                         <h1 className="text-xs neue-light">
-                           {/* @ts-ignore */}
                            {formatDate(props?.createdAt)}
                         </h1>
                         <Image src={circle} alt="" className="w-1 " />

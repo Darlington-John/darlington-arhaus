@@ -6,7 +6,7 @@ import xmark from '~/public/icons/x-black.svg';
 import { toggleOverlay } from '../header/search';
 import { usePathname, useRouter } from 'next/navigation';
 import loadingGif from '~/public/icons/double-loading-black.svg';
-import { context } from '~/app/context/context';
+import { MainContext } from '~/app/context/context';
 import { useCallback, useEffect, useState } from 'react';
 import ViewOverlay from './view-overlay';
 import Link from 'next/link';
@@ -14,7 +14,8 @@ import { useRooms } from '~/app/context/rooms-context';
 import { useKeenSlider } from 'keen-slider/react';
 const Overlay = () => {
    const { rooms, loading } = useRooms();
-   const { isOverlayOpen, setIsOverlayOpen, setCurrentDir } = context();
+   const { isOverlayOpen, setIsOverlayOpen, setCurrentDir, currentDir } =
+      MainContext();
    const linkname = usePathname();
    useEffect(() => {
       const overlayElement = document.getElementById('myOverlay');
@@ -41,7 +42,6 @@ const Overlay = () => {
    const mainCategories = rooms?.flatMap(
       (room: any) => room.menu?.categories || []
    );
-   const { currentDir } = context();
    const router = useRouter();
    const handleNavigation = (url: string) => {
       router.push(url);

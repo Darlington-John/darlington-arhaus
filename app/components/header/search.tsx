@@ -6,7 +6,7 @@ import xmark from '~/public/icons/x-black.svg';
 import searchIcon from '~/public/icons/search.svg';
 import searchWhiteIcon from '~/public/icons/search-white.svg';
 import { usePopup } from '~/lib/utils/toggle-popups';
-import { context } from '~/app/context/context';
+import { MainContext } from '~/app/context/context';
 import { useRooms } from '~/app/context/rooms-context';
 import { useRouter } from 'next/navigation';
 
@@ -36,7 +36,8 @@ const Search = ({
       ref: searchRef,
       togglePopup: toggleSearch,
    } = usePopup();
-   const { isOverlayOpen, setIsOverlayOpen, toggleSearchBarPopup } = context();
+   const { isOverlayOpen, setIsOverlayOpen, toggleSearchBarPopup } =
+      MainContext();
    const handleToggleOverlay = () => {
       toggleOverlay();
       setIsOverlayOpen(!isOverlayOpen);

@@ -1,17 +1,10 @@
 'use client';
 import { useParams } from 'next/navigation';
 
-import { useEffect, useRef } from 'react';
-import more from '~/public/icons/moreWhite.svg';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PageWrapper from '../../components/page-wrapper';
-import Link from 'next/link';
-import pen from '~/public/icons/pen.svg';
-import bin from '~/public/icons/bin.svg';
-import Header from '../components/header';
 import check from '~/public/icons/check.svg';
 import loader from '~/public/icons/loading-white.svg';
-import newPro from '~/public/icons/new.svg';
 import plusIcon from '~/public/icons/plus.svg';
 import Image from 'next/image';
 import { apiRequest } from '~/lib/utils/api-request';

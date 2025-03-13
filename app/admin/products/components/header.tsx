@@ -11,7 +11,7 @@ import LogoutPrompt from '~/app/components/header/logout-prompt';
 import ChangeName from '~/app/components/header/change-name';
 import ChangeProfile from '~/app/components/header/change-profile';
 import bars from '~/public/icons/bars.svg';
-import { context } from '~/app/context/context';
+import { MainContext } from '~/app/context/context';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import Link from 'next/link';
@@ -64,7 +64,7 @@ const Header = (props: any) => {
       toggleChangeProfilePopup,
    };
 
-   const { isAdminOverlayOpen, setIsAdminOverlayOpen } = context();
+   const { isAdminOverlayOpen, setIsAdminOverlayOpen } = MainContext();
    const linkname = usePathname();
    useEffect(() => {
       const overlayElement = document.getElementById('adminOverlay');

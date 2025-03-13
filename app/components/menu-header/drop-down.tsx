@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useRooms } from '~/app/context/rooms-context';
-import { context } from '~/app/context/context';
-import ProductPriceCard from '../cards/product-price-card';
+import { MainContext } from '~/app/context/context';
+
 import ProductSearchCard from '../cards/search-card';
 
 const Dropdown = (props: any) => {
@@ -33,7 +33,7 @@ const Dropdown = (props: any) => {
    const handleNavigation = (url: string) => {
       router.push(url);
    };
-   const { currentDir } = context();
+   const { currentDir } = MainContext();
 
    const [num, setNum] = useState(4);
 

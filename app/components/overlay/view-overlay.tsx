@@ -4,11 +4,10 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useRooms } from '~/app/context/rooms-context';
 
-import { context } from '~/app/context/context';
+import { MainContext } from '~/app/context/context';
 const ViewOverlay = (props: any) => {
    const { activeView } = props;
-   const { rooms, loading } = useRooms() as {
-      loading: boolean;
+   const { rooms } = useRooms() as {
       rooms: any;
    };
    const main = (rooms || [])[activeView]?.menu;
@@ -21,7 +20,7 @@ const ViewOverlay = (props: any) => {
 
       viewElement.style.transform = 'translateX(100%)';
    }, [linkname]);
-   const { currentDir } = context();
+   const { currentDir } = MainContext();
 
    return (
       <div

@@ -75,18 +75,6 @@ const Header = () => {
       transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
    };
 
-   // const seedDatabase = async () => {
-   //    try {
-   //       const response = await fetch('/api/seed-database', {
-   //          method: 'POST',
-   //       });
-   //       const data = await response.json();
-   //       alert(data.message);
-   //    } catch (error) {
-   //       //@ts-ignore
-   //       alert('Failed to seed database: ' + error.message);
-   //    }
-   // };
    const linkname = usePathname();
 
    const links = [

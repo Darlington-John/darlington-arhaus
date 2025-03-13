@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { context } from '~/app/context/context';
+import { MainContext } from '~/app/context/context';
 import { useRooms } from '~/app/context/rooms-context';
 import searchWhiteIcon from '~/public/icons/search-white.svg';
 const SearchBar = (props: any) => {
-   const { isSearchBarVisible, searchBar, searchBarRef } = context();
+   const { isSearchBarVisible, searchBar, searchBarRef } = MainContext();
    const { searchTerm, handleSearchChange } = props;
    const { rooms } = useRooms();
    const router = useRouter();

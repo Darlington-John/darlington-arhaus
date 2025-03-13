@@ -2,10 +2,10 @@
 import { useEffect, useRef } from 'react';
 import Sidebar from '../../components/sidebar/sidebar';
 import { usePathname } from 'next/navigation';
-import { context } from '~/app/context/context';
+import { MainContext } from '~/app/context/context';
 
 const AdminOverlay = () => {
-   const { isAdminOverlayOpen, setIsAdminOverlayOpen } = context();
+   const { setIsAdminOverlayOpen } = MainContext();
 
    const ref = useRef<any>(null);
    const toggleOverlay = () => {

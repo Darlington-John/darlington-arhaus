@@ -4,7 +4,7 @@ import { useCallback, useRef, useState } from 'react';
 import Dropdown from './drop-down';
 import { usePathname } from 'next/navigation';
 import { useRooms } from '~/app/context/rooms-context';
-import { context } from '~/app/context/context';
+import { MainContext } from '~/app/context/context';
 const MenuHeader = (props: any) => {
    const {
       displayedProducts,
@@ -51,7 +51,7 @@ const MenuHeader = (props: any) => {
       noResults,
    };
    const linkname = usePathname();
-   const { setCurrentDir, currentDir } = context();
+   const { setCurrentDir } = MainContext();
    return (
       <div className={`w-full  ${linkname.startsWith('/auth') && 'hidden'}`}>
          {/^\s*$/.test(searchTerm) && (

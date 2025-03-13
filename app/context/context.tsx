@@ -61,4 +61,4 @@ export const ContextProvider = ({
 
    return <Context.Provider value={providerValue}>{children}</Context.Provider>;
 };
-export const context = () => useContext(Context);
+export const MainContext = () => useContext(Context);
