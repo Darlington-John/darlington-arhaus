@@ -1,10 +1,4 @@
-import Link from 'next/link';
-import { useEffect } from 'react';
-
-import { useState } from 'react';
-
-import { useRef } from 'react';
-
+import { useEffect, useState, useRef } from 'react';
 interface AccordionItemProps {
    isOpen: boolean;
    onClick: () => void;

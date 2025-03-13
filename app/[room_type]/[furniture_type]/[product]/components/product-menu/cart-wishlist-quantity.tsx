@@ -5,7 +5,7 @@ import loadingIcon from '~/public/icons/double-loading-black.svg';
 import loadingWhite from '~/public/icons/loading-white.svg';
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useUser } from '~/app/context/auth-context';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { apiRequest } from '~/lib/utils/api-request';
 import { FaCheck } from 'react-icons/fa';
 import { toast } from 'react-toastify';
@@ -25,7 +25,7 @@ const CartWishlistQuantity = (props: any) => {
    const { user } = useUser();
    const router = useRouter();
    const pathname = usePathname();
-   const { room_type, furniture_type, furniture_sub, product } = useParams();
+   const { room_type, furniture_type, furniture_sub } = useParams();
 
    const [loadingWishlist, setLoadingWishlist] = useState(false);
    const wishlisted = user?.wishlist?.some(
@@ -137,10 +137,7 @@ const CartWishlistQuantity = (props: any) => {
    return (
       <div className="py-4 flex flex-col w-full gap-4">
          <div className="flex items-center justify-between ">
-            <div
-               className="text-xs uppercase  neue-bold tracking-widest flex gap-4 items-center  relative font-bold "
-               onClick={toggleQuantity}
-            >
+            <div className="text-xs uppercase  neue-bold tracking-widest flex gap-4 items-center  relative font-bold ">
                <span className="leading-none tracking-wider">
                   Qty: <span className="pl-1">{quantity}</span>
                </span>
@@ -148,6 +145,7 @@ const CartWishlistQuantity = (props: any) => {
                   className={`p-[3px]   border-b-[1px] border-r-[1px]   border-black duration-150  ${
                      isQuantityVisible ? ' rotate-[225deg]' : ' rotate-[45deg] '
                   }`}
+                  onClick={toggleQuantity}
                ></button>
                {Quantity && (
                   <div

@@ -120,6 +120,7 @@ const UserCard = (props: usersType) => {
             <div className="bg-lighterGrey rounded-full h-[180px] overflow-hidden flex items-center justify-center h-[180px] w-[180px] mx-auto">
                <img
                   src={props?.profile ? props.profile : '/icons/user.svg'}
+                  alt=""
                   className={`  rounded-full object-cover  ${
                      props?.profile ? 'w-full h-[180px]   ' : 'w-16'
                   }`}

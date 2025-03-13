@@ -15,8 +15,8 @@ const PageWrapper: React.FC<PageWrapperProps> = ({
 
    children,
 }) => {
-   return errorFetching ? (
-      <div className="flex items-center mx-auto flex-col py-20  ">
+   const renderErrorState = () => (
+      <div className="flex items-center mx-auto flex-col py-20">
          <Image src={boxEmpty} className="w-20" alt="Error icon" />
          <p className="neue-thin text-2xl text-darkGrey uppercase text-black spaced text-center leading-none">
             Error fetching products
@@ -26,13 +26,24 @@ const PageWrapper: React.FC<PageWrapperProps> = ({
             </span>
          </p>
       </div>
-   ) : fetching ? (
+   );
+
+   const renderLoadingState = () => (
       <div className="bg-white h-[40vh] w-full flex items-center justify-center opacity-20">
          <Image src={loadingGif} alt="Loading" className="w-16  md:w-10" />
       </div>
-   ) : (
-      children
    );
+   let content;
+
+   if (errorFetching) {
+      content = renderErrorState();
+   } else if (fetching) {
+      content = renderLoadingState();
+   } else {
+      content = children;
+   }
+
+   return content;
 };
 
 export default PageWrapper;

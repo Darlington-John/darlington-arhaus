@@ -1,6 +1,5 @@
 const ProductPreview = (props: any) => {
-   const { sliderRef, productData, selectedOption, thumbnailRef, matchHeight } =
-      props;
+   const { sliderRef, productData, selectedOption, thumbnailRef } = props;
 
    return (
       <div className="flex items-start  w-[60%]   shrink-0   gap-5   sm:flex-col  lg:gap-2 md:w-full sticky top-10 md:static">

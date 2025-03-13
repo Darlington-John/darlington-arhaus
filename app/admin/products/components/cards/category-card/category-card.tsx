@@ -12,7 +12,6 @@ import EditCategory from './edit-category';
 import DeleteCategory from './delete-category';
 import Link from 'next/link';
 import { useOrders } from '~/app/context/orders-context';
-import { IOrder } from '~/lib/models/orders';
 import { OrdersType } from '~/types/orders';
 const CategoryCard = (props: any) => {
    const {

@@ -18,7 +18,7 @@ const ProductPreview = (props: any) => {
                            index + 1
                         }`}
                         alt="preview"
-                        key={view?._id}
+                        key={view}
                      />
                   )
                )

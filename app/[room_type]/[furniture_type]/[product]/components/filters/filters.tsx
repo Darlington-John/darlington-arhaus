@@ -66,7 +66,6 @@ const Filters = (props: any) => {
       handleWidthChange,
       areAllFiltersDefault,
       filteredProducts,
-      setSelectedSort,
       selectedSort,
       handleSortChange,
    } = props;

@@ -2,7 +2,6 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
-import ProductPriceCard from '~/app/components/cards/product-price-card';
 import boxEmpty from '~/public/icons/empty-box.svg';
 import plusIcon from '~/public/icons/plus.svg';
 import { motion } from 'framer-motion';
@@ -87,7 +86,6 @@ const TypeProducts = () => {
    const {
       isActive: newProduct,
       isVisible: productVisible,
-      ref: productRef,
       togglePopup: toggleNewProduct,
    } = usePopup();
    const {

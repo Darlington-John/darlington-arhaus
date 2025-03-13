@@ -24,8 +24,6 @@ const NewProduct = (props: any) => {
       toggleSecondView,
       secondViewImageUrl,
       handleSecondViewClick,
-      upholstery,
-      setUpholstery,
       toggleNewProduct,
       sucessful,
       handleCreateProduct,

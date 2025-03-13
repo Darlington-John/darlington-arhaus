@@ -3,7 +3,6 @@ import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
-import { usePopup } from '~/lib/utils/toggle-popups';
 
 import ProductPriceCard from '~/app/components/cards/product-price-card';
 

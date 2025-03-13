@@ -5,10 +5,10 @@ import leftIcon from '~/public/icons/arrow-left.svg';
 import 'keen-slider/keen-slider.min.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useRooms } from '../context/rooms-context';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import PageWrapper from './[furniture_type]/[product]/components/page-wrapper/page-wrapper';
 const FurniturePage = () => {
    const { loading } = useRooms();
@@ -80,8 +80,6 @@ const FurniturePage = () => {
    const handleNext = () => {
       sliderInstance?.current?.next();
    };
-   const ref = useRef(null);
-   const isInView = useInView(ref, { once: false });
    const { rooms } = useRooms();
    console.log('rooms', rooms);
    return (

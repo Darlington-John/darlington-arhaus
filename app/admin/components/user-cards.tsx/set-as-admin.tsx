@@ -16,7 +16,6 @@ const SetAsAdmin = (props: any) => {
       userId,
       username,
       isAdmin,
-      setIsAdmin,
    } = props;
 
    const [error, setError] = useState('');
@@ -82,7 +81,7 @@ const SetAsAdmin = (props: any) => {
                      </h1>
                      {isAdmin ? (
                         <p className="text-sm neue-light  text-center">
-                           You’re about to set
+                           You’re about to set{' '}
                            <span className="neue-bold">
                               {` ${username?.firstName} ${username?.lastName} `}{' '}
                            </span>

@@ -75,7 +75,7 @@ const DeleteAccount = (props: any) => {
                      </h1>
 
                      <p className="text-sm neue-light  text-center">
-                        You’re about to delete
+                        You’re about to delete{' '}
                         <span className="neue-bold">
                            {` ${username?.firstName} ${username?.lastName}`}'s
                         </span>{' '}
