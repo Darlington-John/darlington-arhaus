@@ -2,20 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectMongo from '~/lib/mongodb';
 import ProductModel from '~/lib/models/rooms';
 
-interface Context {
-   params: {
-      admin_furniture: string;
-      group_products: string;
-      product_view: string;
-   };
-}
-
-export async function GET(req: NextRequest, context: Context) {
+export async function GET(req: NextRequest) {
    try {
       await connectMongo();
 
-      const { admin_furniture, group_products, product_view } =
-         await context.params;
+      const url = new URL(req.url);
+      const paths = url.pathname.split('/');
+      const admin_furniture = paths[3];
+      const group_products = paths[4];
+      const product_view = paths[5];
 
       const adminFurniture = await ProductModel.findById(admin_furniture);
       if (!adminFurniture) {
