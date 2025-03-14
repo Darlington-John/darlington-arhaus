@@ -20,16 +20,16 @@ const Bag = () => {
       const fetchBag = async () => {
          try {
             const res = await fetch(`/api/bag/get-bag?userId=${userId}`);
-            if (res.ok) {
-               const data = await res.json();
-               setBag(data.bag);
-               setFetching(false);
-            } else {
-               setFetching(false);
+            if (!res.ok) {
                setErrorFetching(true);
+               return;
             }
+            const data = await res.json();
+            setBag(data.bag);
          } catch (error) {
-            console.log('Error during fetching:', error);
+            setErrorFetching(true);
+         } finally {
+            setFetching(false);
          }
       };
       (async () => {
@@ -57,7 +57,6 @@ const Bag = () => {
          }) || []
       );
    }, [user?.bag, bag]);
-   console.log(mergedBag);
    const [quantities, setQuantities] = useState<number[]>([]);
 
    const totalPrice = useMemo(() => {

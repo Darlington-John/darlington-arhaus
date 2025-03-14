@@ -7,7 +7,7 @@ import boxEmpty from '~/public/icons/empty-box.svg';
 
 import loadingGif from '~/public/icons/double-loading-black.svg';
 import { motion } from 'framer-motion';
-import Filters from '../[room_type]/[furniture_type]/[product]/components/filters/filters';
+import Filters from '../[room]/[category]/[product]/components/filters/filters';
 import { useRooms } from '../context/rooms-context';
 import Fuse from 'fuse.js';
 import { ProductResult } from '../components/menu-header/house-hold-materials';

@@ -1,11 +1,13 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect } from 'react';
 import { useUser } from '~/app/context/auth-context';
+import { useRooms } from '~/app/context/rooms-context';
 import heroImg from '~/public/images/hero.webp';
 import heroMobileImg from '~/public/images/living-mobile.webp';
 const Hero = () => {
-   const { user } = useUser();
+   const { rooms, loading } = useRooms();
 
    return (
       <section className="h-screen w-full  flex items-end  justify-center relative md:h-[80vh]">
@@ -27,9 +29,12 @@ const Hero = () => {
                A space for <br />
                the season
             </h1>
-            <button className="p-5 flex items-center justify-center  bg-white text-darkGrey  uppercase  text-xs font-semibold  w-[190px]  h-[45px] hover:bg-black  hover:text-white duration-150 ">
+            <Link
+               href={`/${rooms?.[0]._id ?? '/'}`}
+               className="p-5 flex items-center justify-center  bg-white text-darkGrey  uppercase  text-xs font-semibold  w-[190px]  h-[45px] hover:bg-black  hover:text-white duration-150 "
+            >
                shop living
-            </button>
+            </Link>
          </div>
       </section>
    );

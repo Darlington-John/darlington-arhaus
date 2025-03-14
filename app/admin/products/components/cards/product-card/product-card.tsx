@@ -10,10 +10,10 @@ import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import { apiRequest } from '~/lib/utils/api-request';
 import EditProduct from './edit-product';
-import PreviewPop from '../../../[admin_furniture]/[group_products]/components/popups/preview-pops';
+import PreviewPop from '../../../[room_admin]/[category_admin]/components/popups/preview-pops';
 import DeleteProduct from './delete-product';
 const ProductCard = (props: any) => {
-   const { admin_furniture, group_products, type_products } = useParams();
+   const { room_admin, category_admin } = useParams();
    const {
       isVisible: promptVisible,
       isActive: prompt,
@@ -128,10 +128,9 @@ const ProductCard = (props: any) => {
       formData.append('name', name);
       formData.append('price', price);
       formData.append('cancelledPrice', cancelledPrice);
-      formData.append('groupId', group_products as any);
-      formData.append('furnitureId', admin_furniture as any);
+      formData.append('groupId', category_admin as any);
+      formData.append('furnitureId', room_admin as any);
       formData.append('productId', productId);
-      formData.append('typeId', type_products as any);
       await apiRequest({
          url: '/api/admin/edit-product',
          method: 'PATCH',
@@ -162,7 +161,7 @@ const ProductCard = (props: any) => {
    const handleDeleteProduct = async (e: any) => {
       e.preventDefault();
       if (submitting) return;
-      const check = !(group_products && admin_furniture && productId);
+      const check = !(category_admin && room_admin && productId);
       if (check) {
          setError('All fields are required.');
          return;
@@ -170,8 +169,8 @@ const ProductCard = (props: any) => {
       setSubmitting(true);
       setError('');
       const formData = new FormData();
-      formData.append('groupId', group_products as any);
-      formData.append('furnitureId', admin_furniture as any);
+      formData.append('groupId', category_admin as any);
+      formData.append('furnitureId', room_admin as any);
       formData.append('productId', productId);
       await apiRequest({
          url: '/api/admin/delete-product',
@@ -246,7 +245,7 @@ const ProductCard = (props: any) => {
    return (
       <>
          <Link
-            href={`/admin/products/${admin_furniture}/${group_products}/${props._id}`}
+            href={`/admin/products/${room_admin}/${category_admin}/${props._id}`}
             className="flex flex-col h-[430px]   sm:h-full  sm:w-full md:h-auto  relative "
             onClick={(e) => {
                if (e.defaultPrevented) return;

@@ -47,24 +47,24 @@ const Login = () => {
             body: JSON.stringify(formData),
          });
 
-         if (res.ok) {
-            window.dispatchEvent(new CustomEvent('userUpdated'));
-            window.dispatchEvent(new CustomEvent('usersUpdated'));
-            setSucesssful(true);
-
-            const redirectUrl =
-               new URLSearchParams(window.location.search).get('redirect') ||
-               '/';
-
-            setTimeout(() => {
-               window.location.href = redirectUrl;
-            }, 3000);
-         } else {
+         if (!res.ok) {
             const error = await res.json();
             setError(error?.error || 'An error occurred during signup.');
+            return;
          }
-      } catch (err) {
-         console.error(err);
+
+         window.dispatchEvent(new CustomEvent('userUpdated'));
+         window.dispatchEvent(new CustomEvent('usersUpdated'));
+         setSucesssful(true);
+
+         const redirectUrl =
+            new URLSearchParams(window.location.search).get('redirect') || '/';
+
+         setTimeout(() => {
+            window.location.href = redirectUrl;
+         }, 3000);
+      } catch (err: any) {
+         setError(err.message || 'Something went wrong.');
       } finally {
          setSubmitting(false);
       }

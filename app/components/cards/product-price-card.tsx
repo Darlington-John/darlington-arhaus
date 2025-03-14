@@ -3,7 +3,7 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const ProductPriceCard = (props: any) => {
-   const { room_type, furniture_type } = useParams();
+   const { room, category } = useParams();
    const { categoryId, roomId, admin } = props;
    const [currentPreview, setCurrentPreview] = useState(
       props?.views?.first_view
@@ -23,9 +23,7 @@ const ProductPriceCard = (props: any) => {
          href={
             admin
                ? `/admin/products/${roomId}/${categoryId}/${props._id}`
-               : `/${room_type || roomId}/${furniture_type || categoryId}/${
-                    props._id
-                 }`
+               : `/${room || roomId}/${category || categoryId}/${props._id}`
          }
          className="flex flex-col h-[430px] bg-white  sm:h-full  sm:w-full md:h-auto "
       >

@@ -11,7 +11,6 @@ export async function POST() {
             useNewUrlParser: true,
             useUnifiedTopology: true,
          });
-         console.log('Connected to MongoDB');
       }
 
       await ProductModel.insertMany(houseHoldMaterials);

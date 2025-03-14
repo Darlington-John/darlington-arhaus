@@ -50,7 +50,6 @@ export async function GET(req: NextRequest) {
 
       return NextResponse.json({ productData });
    } catch (error) {
-      console.error(error);
       return NextResponse.json(
          { error: 'An error occurred while fetching the data' },
          { status: 500 }

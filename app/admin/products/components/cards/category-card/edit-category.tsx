@@ -3,7 +3,7 @@ import { usePopup } from '~/lib/utils/toggle-popups';
 import check from '~/public/icons/check.svg';
 import loader from '~/public/icons/loading-white.svg';
 import pen from '~/public/icons/pen.svg';
-import OptionPreview from '../../../[admin_furniture]/[group_products]/[product_view]/components/product-menu/product-menu/modify-options/edit-upholstery/option-preview';
+import OptionPreview from '../../../[room_admin]/[category_admin]/[product_admin]/components/product-menu/product-menu/modify-options/edit-upholstery/option-preview';
 import FileInput from '../../inputs/preview-inputs';
 const EditCategory = (props: any) => {
    const {

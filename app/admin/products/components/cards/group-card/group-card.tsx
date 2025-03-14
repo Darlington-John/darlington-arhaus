@@ -28,7 +28,7 @@ const GroupCard = (props: any) => {
       togglePopup: toggleDeleteGroup,
       ref: deleteGroupRef,
    } = usePopup();
-   const { admin_furniture } = useParams();
+   const { room_admin } = useParams();
    const [error, setError] = useState('');
    const [groupEdit, setGroupEdit] = useState('');
    const [groupId, setGroupId] = useState('');
@@ -49,7 +49,7 @@ const GroupCard = (props: any) => {
       const formData = new FormData();
       formData.append('image', file as any);
       formData.append('content', groupEdit);
-      formData.append('categoryId', admin_furniture as any);
+      formData.append('categoryId', room_admin as any);
       formData.append('groupId', groupId);
       await apiRequest({
          url: '/api/admin/edit-group',
@@ -85,7 +85,7 @@ const GroupCard = (props: any) => {
       await apiRequest({
          url: '/api/admin/delete-group',
          method: 'DELETE',
-         body: { categoryId: admin_furniture, groupId: groupId },
+         body: { categoryId: room_admin, groupId: groupId },
 
          onSuccess: () => {
             window.dispatchEvent(new CustomEvent('customRoomsUpdate'));
@@ -155,7 +155,7 @@ const GroupCard = (props: any) => {
    return (
       <>
          <Link
-            href={`/admin/products/${admin_furniture}/${props._id}`}
+            href={`/admin/products/${room_admin}/${props._id}`}
             className="relative  h-[350px]   w-[330px] shrink-0  overflow-hidden flex flex-col  gap-2  opacity bg-white  hover:shadow-md  duration-300  md:w-[260px]  md:h-[230px] md:gap-0  xs:w-full  xs:h-auto "
             onClick={(e) => {
                if (e.defaultPrevented) return;

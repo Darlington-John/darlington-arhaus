@@ -69,7 +69,6 @@ const DeliveryDetails = (props: any) => {
                      );
 
                   const data = await res.json();
-                  console.log('API Response:', data);
                   setMarkets(data);
                } catch (err: any) {
                   setStationError(err.message);

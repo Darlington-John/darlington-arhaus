@@ -14,7 +14,6 @@ const Admin = () => {
    const { user, users } = useUser();
    const { orders } = useOrders();
 
-   console.log('orders', orders);
    const today = new Date().toISOString().split('T')[0];
    const calculateTotalUsersStats = (users: usersType[]) => {
       let usersSuscribedToday = 0;

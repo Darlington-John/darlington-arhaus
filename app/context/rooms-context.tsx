@@ -24,7 +24,6 @@ export const RoomsProvider = ({ children }: { children: React.ReactNode }) => {
             if (res.ok) {
                const data = await res.json();
                setRooms(data.rooms);
-               console.log('Rooms fetched successfully.');
             } else {
                console.warn(
                   'Failed to fetch Rooms. Using household materials.'
@@ -39,7 +38,6 @@ export const RoomsProvider = ({ children }: { children: React.ReactNode }) => {
 
       const dispatchCustomEvent = async () => {
          try {
-            console.log('Dispatching custom event...');
             const res = await fetch('/api/rooms/fetch-rooms', {
                credentials: 'include',
             });
@@ -47,7 +45,6 @@ export const RoomsProvider = ({ children }: { children: React.ReactNode }) => {
             if (res.ok) {
                const data = await res.json();
                setRooms(data.rooms);
-               console.log('Custom dispatch fetched Rooms successfully.');
             } else {
                console.warn('Failed to fetch Rooms during custom dispatch.');
             }

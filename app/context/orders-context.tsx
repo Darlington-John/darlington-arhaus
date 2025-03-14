@@ -25,16 +25,12 @@ export const OrdersProvider = ({ children }: { children: React.ReactNode }) => {
                const data = await res.json();
                setOrders(data.orders);
             } else {
-               console.warn(
+               console.error(
                   'Failed to fetch orders. Using household materials.'
                );
-               setOrders(houseHoldMaterials);
             }
          } catch (err) {
             console.error('Error fetching orders:', err);
-            if (!orders) {
-               setOrders(houseHoldMaterials);
-            }
          } finally {
             setLoading(false);
          }
@@ -42,7 +38,6 @@ export const OrdersProvider = ({ children }: { children: React.ReactNode }) => {
 
       const dispatchCustomEvent = async () => {
          try {
-            console.log('Dispatching custom event...');
             const res = await fetch('/api/orders/fetch-orders', {
                credentials: 'include',
             });

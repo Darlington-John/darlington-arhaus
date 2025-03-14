@@ -1,4 +1,4 @@
-import PageWrapper from '~/app/[room_type]/[furniture_type]/[product]/components/page-wrapper/page-wrapper';
+import PageWrapper from '~/app/[room]/[category]/[product]/components/page-wrapper/page-wrapper';
 import Header from './header';
 import plusIcon from '~/public/icons/plus.svg';
 import Image from 'next/image';

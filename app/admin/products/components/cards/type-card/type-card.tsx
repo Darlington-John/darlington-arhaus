@@ -29,7 +29,7 @@ const TypeCard = (props: any) => {
       togglePopup: toggleDeleteType,
       ref: deleteTypeRef,
    } = usePopup();
-   const { admin_furniture, group_products } = useParams();
+   const { room_admin, category_admin } = useParams();
    const [error, setError] = useState('');
    const [typeEdit, setTypeEdit] = useState('');
    const [typeId, setTypeId] = useState('');
@@ -51,8 +51,8 @@ const TypeCard = (props: any) => {
       formData.append('image', file as any);
       formData.append('type', typeEdit);
       formData.append('typeId', typeId);
-      formData.append('groupId', group_products as any);
-      formData.append('productId', admin_furniture as any);
+      formData.append('groupId', category_admin as any);
+      formData.append('productId', room_admin as any);
       await apiRequest({
          url: '/api/admin/edit-type',
          method: 'PATCH',
@@ -87,9 +87,9 @@ const TypeCard = (props: any) => {
          url: '/api/admin/delete-type',
          method: 'DELETE',
          body: {
-            categoryId: admin_furniture,
+            categoryId: room_admin,
             typeId: typeId,
-            groupId: group_products,
+            groupId: category_admin,
          },
          onSuccess: () => {
             window.dispatchEvent(new CustomEvent('groupUpdated'));
@@ -159,7 +159,7 @@ const TypeCard = (props: any) => {
    return (
       <>
          <Link
-            href={`/admin/products/${admin_furniture}/${group_products}/${props._id}`}
+            href={`/admin/products/${room_admin}/${category_admin}/${props._id}`}
             className="relative  h-[370px]   w-[330px] shrink-0  overflow-hidden flex flex-col  gap-2  opacity bg-white  hover:shadow-md  duration-300  md:w-[260px]  md:h-[230px] md:gap-0  xs:w-full  xs:h-auto "
             onClick={(e) => {
                if (e.defaultPrevented) return;

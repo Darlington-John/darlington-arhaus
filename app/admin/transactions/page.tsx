@@ -5,9 +5,6 @@ import EmptyPrompt from '../products/components/empty-prompt';
 import { useOrders } from '~/app/context/orders-context';
 import { OrdersType } from '~/types/orders';
 import { usersType } from '~/types/users';
-import { apiRequest } from '~/lib/utils/api-request';
-import Image from 'next/image';
-import moreIcon from '~/public/icons/more.svg';
 import Row from './table/row';
 const Transactions = () => {
    const { orders, loading } = useOrders() as {
@@ -15,22 +12,25 @@ const Transactions = () => {
       loading: boolean;
    };
    const [users, setUsers] = useState<Record<string, usersType>>({});
-
+   const [errorFetching, setErrorFetching] = useState(false);
    useEffect(() => {
       const fetchUsers = async () => {
-         const userIds = [...new Set(orders?.map((order) => order.user_id))]; // Get unique user IDs
+         const userIds = [...new Set(orders?.map((order) => order.user_id))];
          const userDetails: Record<string, usersType> = {};
 
          await Promise.all(
             userIds?.map(async (userId) => {
                try {
                   const res = await fetch(`/api/admin/users/${userId}`);
-                  const data = await res.json();
-                  if (res.ok) {
-                     userDetails[userId] = data; // Store user data using userId as key
+
+                  if (!res.ok) {
+                     setErrorFetching(true);
+                     return;
                   }
+                  const data = await res.json();
+                  userDetails[userId] = data;
                } catch (error) {
-                  console.error('Error fetching user:', error);
+                  setErrorFetching(true);
                }
             })
          );
@@ -46,7 +46,7 @@ const Transactions = () => {
       orders,
    };
    return (
-      <PageWrapper fetching={loading} errorFetching={false}>
+      <PageWrapper fetching={loading} errorFetching={errorFetching}>
          <section className="flex flex-col gap-2  py-6 px-4 md:gap-4 ">
             <div className="flex items-center justify-between w-full 2xs:flex-col 2xs:gap-2 2xs:items-start ">
                <h1 className="flex text-3xl neue-thin capitalize  md:text-2xl  sm:text-xl">

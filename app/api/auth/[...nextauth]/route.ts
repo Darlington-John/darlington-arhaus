@@ -27,8 +27,6 @@ export const authOptions: NextAuthOptions = {
                   oauthProvider: 'google',
                   isAdmin: false,
                });
-            } else {
-               console.log('Existing User Found');
             }
 
             token.id = existingUser._id;
@@ -38,24 +36,15 @@ export const authOptions: NextAuthOptions = {
             token.isAdmin = existingUser.isAdmin;
          }
 
-         // console.log("Updated Token:", token);
          return token;
       },
 
       async session({ session, token }: any) {
-         // console.log("Session Callback Triggered");
-         // console.log("Incoming Token:", token);
-         // console.log("Session Before Update:", session);
-
          if (token) {
             session.user.id = token.id;
             session.user.email = token.email;
             session.user.name = token.name;
             session.user.isAdmin = token.isAdmin;
-
-            // console.log("Session After Update:", session);
-         } else {
-            console.log('No token available in session callback');
          }
 
          return session;

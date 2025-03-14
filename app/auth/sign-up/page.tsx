@@ -51,31 +51,28 @@ const SignUp = () => {
             body: JSON.stringify(formData),
          });
 
-         if (res.ok) {
-            const data = await res.json();
-            window.dispatchEvent(new CustomEvent('userUpdated'));
-            window.dispatchEvent(new CustomEvent('usersUpdated'));
-            document.cookie = `email=${data.email}; Path=/; HttpOnly`;
-            localStorage.setItem('email', data.email);
-
-            setSucesssful(true);
-            const redirectUrl =
-               new URLSearchParams(window.location.search).get('redirect') ||
-               '/';
-
-            setTimeout(() => {
-               router.push(
-                  `/auth/verify-email?redirect=${encodeURIComponent(
-                     redirectUrl
-                  )}`
-               );
-            }, 3000);
-         } else {
+         if (!res.ok) {
             const error = await res.json();
             setError(error?.error || 'An error occurred during signup.');
+            return;
          }
-      } catch (err) {
-         console.error(err);
+         const data = await res.json();
+         window.dispatchEvent(new CustomEvent('userUpdated'));
+         window.dispatchEvent(new CustomEvent('usersUpdated'));
+         document.cookie = `email=${data.email}; Path=/; HttpOnly`;
+         localStorage.setItem('email', data.email);
+
+         setSucesssful(true);
+         const redirectUrl =
+            new URLSearchParams(window.location.search).get('redirect') || '/';
+
+         setTimeout(() => {
+            router.push(
+               `/auth/verify-email?redirect=${encodeURIComponent(redirectUrl)}`
+            );
+         }, 3000);
+      } catch (err: any) {
+         setError(err.message || 'Something went wrong.');
       } finally {
          setSubmitting(false);
       }

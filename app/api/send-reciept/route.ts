@@ -22,7 +22,6 @@ export async function POST(req: NextRequest) {
          totalPrice,
          selectedStation,
       } = await req.json();
-      console.log('selected', selectedStation);
       const user = await User.findById(userId);
       if (!user) {
          return NextResponse.json({ error: 'User not found' }, { status: 404 });

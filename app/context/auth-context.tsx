@@ -23,10 +23,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
          const setCustomCookie = async () => {
             try {
                const res = await fetch('/api/auth/custom');
-               if (res.ok) {
-                  console.log('Custom cookie set successfully.');
-               } else {
-                  console.warn('Failed to set custom cookie.');
+               if (!res.ok) {
+                  console.error('Failed to set custom cookie.');
+                  return;
                }
             } catch (error) {
                console.error('Error setting custom cookie:', error);
@@ -36,13 +35,13 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
          const dispatch = async () => {
             try {
                const res = await fetch('/api/auth/user');
-               if (res.ok) {
-                  window.dispatchEvent(new CustomEvent('userUpdated'));
-               } else {
-                  console.log('Failed to fetch user data.');
+               if (!res.ok) {
+                  return;
                }
+
+               window.dispatchEvent(new CustomEvent('userUpdated'));
             } catch (error) {
-               console.log('Error fetching user data:', error);
+               console.error('Error fetching user data:', error);
             }
          };
 
@@ -72,16 +71,16 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
                credentials: 'include',
             });
 
-            if (res.ok) {
-               const data = await res.json();
-               setUser(data.user);
-            } else if ([401, 404, 500].includes(res.status)) {
+            if (!res.ok) {
                clearCookies();
                setUser(null);
-            } else {
-               console.warn('Unexpected response status:', res.status);
+               return;
             }
+
+            const data = await res.json();
+            setUser(data.user);
          } catch (err) {
+            clearCookies();
             setUser(null);
          } finally {
             setLoading(false);
@@ -106,14 +105,12 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
          try {
             const res = await fetch('/api/auth/users');
 
-            if (res.ok) {
-               const data = await res.json();
-               setUsers(data.users);
-            } else if ([401, 404, 500].includes(res.status)) {
+            if (!res.ok) {
                setUsers(null);
-            } else {
-               console.warn('Unexpected response status:', res.status);
+               return;
             }
+            const data = await res.json();
+            setUsers(data.users);
          } catch (err) {
             setUsers(null);
          } finally {

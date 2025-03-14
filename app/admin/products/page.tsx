@@ -15,7 +15,7 @@ import CategoryCard from './components/cards/category-card/category-card';
 import { useOrders } from '~/app/context/orders-context';
 import EmptyPrompt from './components/empty-prompt';
 import FileInput from './components/inputs/preview-inputs';
-import OptionPreview from './[admin_furniture]/[group_products]/[product_view]/components/product-menu/product-menu/modify-options/edit-upholstery/option-preview';
+import OptionPreview from './[room_admin]/[category_admin]/[product_admin]/components/product-menu/product-menu/modify-options/edit-upholstery/option-preview';
 
 const ProductCategories = () => {
    const { rooms, loading } = useRooms();

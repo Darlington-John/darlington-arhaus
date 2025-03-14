@@ -2,9 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useUser } from '../context/auth-context';
 import PageWrapper from '../admin/components/page-wrapper';
-import ProductPriceCard from '../components/cards/product-price-card';
 import { motion } from 'framer-motion';
-import { useParams } from 'next/navigation';
 import WishlistCard from '../components/cards/wishlist-card';
 
 const Wishlist = () => {
@@ -24,16 +22,16 @@ const Wishlist = () => {
             const res = await fetch(
                `/api/wishlist/get-wishlist?userId=${userId}`
             );
-            if (res.ok) {
-               const data = await res.json();
-               setWishlist(data.wishlist);
-               setFetching(false);
-            } else {
-               setFetching(false);
+            if (!res.ok) {
                setErrorFetching(true);
+               return;
             }
+            const data = await res.json();
+            setWishlist(data.wishlist);
          } catch (error) {
-            console.log('Error during fetching:', error);
+            setErrorFetching(true);
+         } finally {
+            setFetching(false);
          }
       };
       (async () => {
@@ -54,7 +52,6 @@ const Wishlist = () => {
       );
       return { ...wish, ...matchingProduct };
    });
-   console.log('merged', mergedWishlist);
    return (
       <section className="flex w-full flex-col px-16 pt-[140px] bg-white justify-center  items-center  xl:pt-16 lg:px-6 dxs:pt-4 min-h-[50vh]">
          <PageWrapper fetching={fetching} errorFetching={errorFetching}>

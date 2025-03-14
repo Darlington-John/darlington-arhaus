@@ -21,6 +21,7 @@ const LogoutPrompt = (props: any) => {
          setClearing(true);
          if (!response.ok) {
             console.error(`Failed to clear cookies: ${response.statusText}`);
+            return;
          }
 
          window.dispatchEvent(new CustomEvent('userUpdated'));

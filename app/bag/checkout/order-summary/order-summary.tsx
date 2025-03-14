@@ -70,7 +70,6 @@ const OrderSummary = (props: any) => {
       );
    };
    const filteredProduct = mergedBag.map(filterProductData);
-   console.log('fill', filteredProduct);
    const productCheck = async () => {
       if (checkingProduct && !checkSucessful) return;
       const check = !user?._id;
