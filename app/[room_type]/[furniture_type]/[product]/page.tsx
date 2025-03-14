@@ -217,7 +217,7 @@ const FurniturePage = () => {
    };
 
    return (
-      <main className="flex w-full flex-col  pt-[180px] bg-white  pb-20 lg:pt-[100px]  sm:pt-[60px] md:pb-8 ">
+      <main className="flex w-full flex-col  pt-[180px] bg-white  pb-20 lg:pt-[100px]  sm:pt-[60px] md:pb-8  let-it-happen ">
          <PageWrapper fetching={fetching} errorFetching={errorFetching}>
             <motion.section
                className="flex  w-full gap-6 items-start h-full md:flex-col lg:gap-4"

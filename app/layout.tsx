@@ -13,6 +13,7 @@ import Footer from './components/footer/footer';
 import { OrdersProvider } from './context/orders-context';
 import AdminOverlay from './admin/products/components/overlay';
 import { RoomsProvider } from './context/rooms-context';
+import { Suspense } from 'react';
 
 const Louize = localFont({
    src: './fonts/LouizeDisplay.ttf',
@@ -55,11 +56,14 @@ export default function RootLayout({
                   <OrdersProvider>
                      <RoomsProvider>
                         <UserProvider>
-                           <Header />
-                           <Overlay />
-                           <AdminOverlay />
-                           {children}
-                           <Footer />
+                           <Suspense>
+                              <Header />
+                              <Overlay />
+                              <AdminOverlay />
+                              {children}
+
+                              <Footer />
+                           </Suspense>
                         </UserProvider>
                      </RoomsProvider>
                   </OrdersProvider>
