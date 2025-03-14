@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useRooms } from '~/app/context/rooms-context';
 import { MainContext } from '~/app/context/context';
@@ -53,7 +53,7 @@ const Dropdown = (props: any) => {
       return () => window.removeEventListener('resize', updateNum);
    }, []);
    return (
-      <>
+      <Suspense>
          {activeDropdown !== null && (
             <div
                className={`absolute top-[130px] left-0 w-full   p-4 z-10 transition-all duration-300 flex-row flex bg-white xl:hidden shadow  justify-center    ${
@@ -176,7 +176,7 @@ const Dropdown = (props: any) => {
                )}
             </div>
          )}
-      </>
+      </Suspense>
    );
 };
 

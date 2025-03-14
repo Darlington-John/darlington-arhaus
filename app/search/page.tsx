@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import ProductPriceCard from '~/app/components/cards/product-price-card';
 import boxEmpty from '~/public/icons/empty-box.svg';
@@ -246,72 +246,79 @@ const SearchPage = () => {
    };
 
    return (
-      <main className="flex w-full flex-col px-16 pt-[140px] bg-white justify-center  items-center  xl:pt-16 lg:px-6 dxs:px-4">
-         <motion.section
-            className="flex flex-col w-full gap-6 max-w-[1500px]  xs:gap-2"
-            animate={{
-               opacity: [0, 100],
-               transition: { ease: ['easeIn', 'easeOut'] },
-            }}
-         >
-            <h1 className="neue-thin text-[48px] text-darkGrey uppercase text-black  xl:text-4xl lg:text-3xl md:text-2xl spaced  ">
-               showing results for '{searchTerm}'
-            </h1>
-            {loading ? (
-               <div className="bg-white h-[40vh] w-full flex items-center justify-center opacity-20">
-                  <Image
-                     src={loadingGif}
-                     alt="Loading"
-                     className="w-16  md:w-10"
-                  />
-               </div>
-            ) : (
-               <>
-                  <Filters {...filterProps} />
+      <Suspense>
+         <main className="flex w-full flex-col px-16 pt-[140px] bg-white justify-center  items-center  xl:pt-16 lg:px-6 dxs:px-4">
+            <motion.section
+               className="flex flex-col w-full gap-6 max-w-[1500px]  xs:gap-2"
+               animate={{
+                  opacity: [0, 100],
+                  transition: { ease: ['easeIn', 'easeOut'] },
+               }}
+            >
+               <h1 className="neue-thin text-[48px] text-darkGrey uppercase text-black  xl:text-4xl lg:text-3xl md:text-2xl spaced  ">
+                  showing results for '{searchTerm}'
+               </h1>
+               {loading ? (
+                  <div className="bg-white h-[40vh] w-full flex items-center justify-center opacity-20">
+                     <Image
+                        src={loadingGif}
+                        alt="Loading"
+                        className="w-16  md:w-10"
+                     />
+                  </div>
+               ) : (
+                  <>
+                     <Filters {...filterProps} />
 
-                  {noResults ? (
-                     'No results'
-                  ) : (
-                     <>
-                        {filteredProducts && filteredProducts.length > 0 && (
-                           <div className="  grid grid-cols-3   gap-8  md:gap-4  sm:flex sm:flex-col xl:grid-cols-2  ">
-                              {filteredProducts.map(
-                                 ({
-                                    product,
-                                    roomId,
-                                    categoryId,
-                                    index,
-                                 }: any) => (
-                                    <div key={product._id}>
-                                       <ProductPriceCard
-                                          data={product}
-                                          {...product}
-                                          roomId={roomId}
-                                          categoryId={categoryId}
-                                       />
-                                    </div>
-                                 )
+                     {noResults ? (
+                        'No results'
+                     ) : (
+                        <>
+                           {filteredProducts && filteredProducts.length > 0 && (
+                              <div className="  grid grid-cols-3   gap-8  md:gap-4  sm:flex sm:flex-col xl:grid-cols-2  ">
+                                 {filteredProducts.map(
+                                    ({
+                                       product,
+                                       roomId,
+                                       categoryId,
+                                       index,
+                                    }: any) => (
+                                       <div key={product._id}>
+                                          <ProductPriceCard
+                                             data={product}
+                                             {...product}
+                                             roomId={roomId}
+                                             categoryId={categoryId}
+                                          />
+                                       </div>
+                                    )
+                                 )}
+                              </div>
+                           )}
+                           {filteredProducts &&
+                              filteredProducts.length === 0 && (
+                                 <div className="flex items-center  mx-auto flex-col pb-10 ">
+                                    <Image
+                                       src={boxEmpty}
+                                       className="w-20"
+                                       alt=""
+                                    />
+                                    <p className="neue-thin text-2xl text-darkGrey uppercase text-black  spaced  text-center  leading-none">
+                                       No products match your filters.
+                                       <br />
+                                       <span className="text-base normal-case  neue-thin  tracking-normal ">
+                                          Try adjusting your filters.
+                                       </span>
+                                    </p>
+                                 </div>
                               )}
-                           </div>
-                        )}
-                        {filteredProducts && filteredProducts.length === 0 && (
-                           <div className="flex items-center  mx-auto flex-col pb-10 ">
-                              <Image src={boxEmpty} className="w-20" alt="" />
-                              <p className="neue-thin text-2xl text-darkGrey uppercase text-black  spaced  text-center  leading-none">
-                                 No products match your filters.
-                                 <br />
-                                 <span className="text-base normal-case  neue-thin  tracking-normal ">
-                                    Try adjusting your filters.
-                                 </span>
-                              </p>
-                           </div>
-                        )}
-                     </>
-                  )}
-               </>
-            )}
-         </motion.section>
-      </main>
+                        </>
+                     )}
+                  </>
+               )}
+            </motion.section>
+         </main>
+      </Suspense>
    );
 };
 
