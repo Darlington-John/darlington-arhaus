@@ -27,6 +27,7 @@ const ProductMenu = (props: any) => {
       QuantityRef,
       setQuantity,
       matchRef,
+      setActiveIndex,
    } = props;
 
    const optionsProps = {
@@ -38,6 +39,7 @@ const ProductMenu = (props: any) => {
       activeOption,
       isVisible,
       hideTimeout,
+      setActiveIndex,
    };
 
    const accordionProps = { productData };

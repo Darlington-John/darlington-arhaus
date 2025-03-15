@@ -13,46 +13,6 @@ import PageWrapper from '~/app/admin/components/page-wrapper';
 import ProductMenu from './components/product-menu/product-menu/product-menu';
 import ProductPreview from './components/product-preview/product-preview';
 
-function ThumbnailPlugin(mainRef: any) {
-   return (slider: any) => {
-      function removeActive() {
-         slider.slides.forEach((slide: any) => {
-            slide.classList.remove('ring-[2px]');
-         });
-      }
-
-      function addActive(idx: number) {
-         const relativeIdx = slider.track.absToRel(idx);
-         slider?.slides[relativeIdx]?.classList?.add('ring-[2px]');
-      }
-
-      function addClickEvents() {
-         slider.slides.forEach((slide: any, idx: number) => {
-            slide.removeEventListener('click', handleClick);
-            slide.addEventListener('click', handleClick);
-
-            function handleClick() {
-               if (mainRef.current) {
-                  mainRef.current.moveToIdx(idx);
-               }
-            }
-         });
-      }
-
-      const refreshThumbnailState = () => {
-         if (!mainRef.current) return;
-
-         const activeIdx = mainRef?.current?.track?.details?.rel || 0;
-         removeActive();
-         addActive(activeIdx);
-         addClickEvents();
-      };
-
-      slider.on('created', refreshThumbnailState);
-      slider.on('updated', refreshThumbnailState);
-   };
-}
-
 const FurniturePage = () => {
    const [productData, setProductData] = useState<any>(null);
 
@@ -126,71 +86,15 @@ const FurniturePage = () => {
       setSelectedOption(index);
    }, []);
 
-   const [sliderRef, instanceRef] = useKeenSlider({
-      initial: 0,
-   });
-   const [thumbnailRef, thumbnailInstanceRef] = useKeenSlider(
-      {
-         initial: 0,
-         slides: {
-            spacing: 10,
-            perView: 6,
-         },
+   const [activeIndex, setActiveIndex] = useState(0);
+   const sliderRef = useRef<HTMLDivElement | null>(null);
 
-         vertical: true,
-         breakpoints: {
-            '(max-width: 639px)': {
-               vertical: false,
-            },
-         },
-      },
-
-      [ThumbnailPlugin(instanceRef)]
-   );
-   function resetActiveSlideIndex() {
-      if (instanceRef.current) {
-         instanceRef.current.update();
-
-         instanceRef.current.moveToIdx(0, true);
-      }
-   }
-   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-   const recalculateSliders = () => {
-      if (instanceRef.current) {
-         instanceRef.current.update();
-      }
-      if (thumbnailInstanceRef.current) {
-         thumbnailInstanceRef.current.update();
-      }
-   };
-   useEffect(() => {
-      resetActiveSlideIndex();
-      recalculateSliders();
-   }, [productData]);
-
-   useEffect(() => {
-      const recalculateSliders = () => {
-         if (instanceRef.current) {
-            instanceRef.current.update();
-         }
-         if (thumbnailInstanceRef.current) {
-            thumbnailInstanceRef.current.update();
-         }
-      };
-
-      intervalRef.current = setInterval(() => {
-         recalculateSliders();
-      }, 1000);
-
-      return () => {
-         if (intervalRef.current) clearInterval(intervalRef.current);
-      };
-   }, [productData]);
    const productPreviewProps = {
       sliderRef,
       productData,
       selectedOption,
-      thumbnailRef,
+      activeIndex,
+      setActiveIndex,
    };
    const productMenuProps = {
       productData,
@@ -202,7 +106,7 @@ const FurniturePage = () => {
       isVisible,
       hideTimeout,
       setSelectedOption,
-      resetActiveSlideIndex,
+      setActiveIndex,
    };
 
    return (

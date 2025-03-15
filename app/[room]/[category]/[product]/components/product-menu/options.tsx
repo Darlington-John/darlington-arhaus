@@ -8,6 +8,7 @@ const Options = (props: any) => {
       activeOption,
       isVisible,
       hideTimeout,
+      setActiveIndex,
    } = props;
    return (
       <div className="flex items-center gap-3  relative">
@@ -20,7 +21,10 @@ const Options = (props: any) => {
                key={data?._id}
                onMouseEnter={() => handleMouseEnter(index)}
                onMouseLeave={handleMouseLeave}
-               onClick={() => handleOptionClick(index)}
+               onClick={() => {
+                  handleOptionClick(index);
+                  setActiveIndex(0);
+               }}
             >
                <img
                   src={data?.option_image}

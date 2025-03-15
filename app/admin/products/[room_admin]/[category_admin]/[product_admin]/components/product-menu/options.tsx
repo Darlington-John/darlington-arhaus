@@ -9,7 +9,7 @@ const Options = (props: any) => {
       isVisible,
       hideTimeout,
       setOptionId,
-      resetActiveSlideIndex,
+      setActiveIndex,
    } = props;
    return (
       <div className="flex items-center gap-3  relative">
@@ -24,7 +24,7 @@ const Options = (props: any) => {
                onMouseLeave={handleMouseLeave}
                onClick={() => {
                   handleOptionClick(index);
-                  resetActiveSlideIndex();
+                  setActiveIndex(0);
                   setOptionId(data._id);
                }}
             >

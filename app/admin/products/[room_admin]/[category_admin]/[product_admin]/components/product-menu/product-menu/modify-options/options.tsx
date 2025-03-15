@@ -20,7 +20,8 @@ const ModifyOptions = (props: any) => {
       upholsteryEditRef,
       toggleUpholsteryEdit,
       setSelectedOption,
-      resetActiveSlideIndex,
+
+      setActiveIndex,
       optionId,
       setOptionId,
    } = props;
@@ -47,7 +48,7 @@ const ModifyOptions = (props: any) => {
       hideTimeout,
       optionId,
       setOptionId,
-      resetActiveSlideIndex,
+      setActiveIndex,
    };
    const editUpholsteryProps = {
       upholsteryEdit,

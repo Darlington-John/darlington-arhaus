@@ -20,7 +20,8 @@ const ProductMenu = (props: any) => {
       isVisible,
       hideTimeout,
       setSelectedOption,
-      resetActiveSlideIndex,
+
+      setActiveIndex,
    } = props;
 
    const {
@@ -60,7 +61,8 @@ const ProductMenu = (props: any) => {
       upholsteryEdit,
       upholsteryEditRef,
       toggleUpholsteryEdit,
-      resetActiveSlideIndex,
+
+      setActiveIndex,
    };
    const modifyProductNameProps = {
       productData,
