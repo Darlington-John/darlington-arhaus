@@ -7,7 +7,7 @@ import { useRooms } from '~/app/context/rooms-context';
 import heroImg from '~/public/images/hero.webp';
 import heroMobileImg from '~/public/images/living-mobile.webp';
 const Hero = () => {
-   const { rooms, loading } = useRooms();
+   const { rooms } = useRooms();
 
    return (
       <section className="h-screen w-full  flex items-end  justify-center relative md:h-[80vh]">

@@ -80,7 +80,6 @@ const FurniturePage = () => {
    const handleNext = () => {
       sliderInstance?.current?.next();
    };
-   const { rooms } = useRooms();
    return (
       <main className="flex w-full flex-col px-16 pt-[140px] bg-white relative  md:px-4 xl:pt-16 ">
          <PageWrapper fetching={fetching} errorFetching={errorFetching}>

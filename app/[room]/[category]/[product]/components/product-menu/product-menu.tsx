@@ -26,7 +26,6 @@ const ProductMenu = (props: any) => {
       Quantity,
       QuantityRef,
       setQuantity,
-      matchRef,
       setActiveIndex,
    } = props;
 
@@ -57,7 +56,7 @@ const ProductMenu = (props: any) => {
       productData,
    };
 
-   const { loading, user } = useUser();
+   const { user } = useUser();
    const router = useRouter();
    const pathname = usePathname();
    const [adding, setAdding] = useState(false);

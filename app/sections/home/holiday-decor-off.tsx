@@ -1,6 +1,11 @@
+'use client';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRooms } from '~/app/context/rooms-context';
 import decorImg from '~/public/images/decor-mobile.webp';
 const HolidayDecorOff = () => {
+   const { rooms } = useRooms();
+
    return (
       <section
          className="flex items-center justify-center  h-[80vh] bg-fixed bg-cover relative"
@@ -16,9 +21,12 @@ const HolidayDecorOff = () => {
             <h1 className="text-6xl   louize text-white leading-none tracking-[0.15em] text-center  md:text-5xl  sm:text-4xl  dxs:text-3xl ">
                UP TO 70% OFF HOLIDAY DÉCOR
             </h1>
-            <button className="p-5 flex items-center justify-center  bg-white text-darkGrey  uppercase  text-xs font-semibold  w-[190px]  h-[45px] hover:bg-black  hover:text-white duration-150 ">
+            <Link
+               href={`/${rooms?.[0]._id ?? '/'}`}
+               className="p-5 flex items-center justify-center  bg-white text-darkGrey  uppercase  text-xs font-semibold  w-[190px]  h-[45px] hover:bg-black  hover:text-white duration-150 "
+            >
                shop living
-            </button>
+            </Link>
          </div>
       </section>
    );

@@ -8,22 +8,35 @@ import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import Link from 'next/link';
 import { useRooms } from '~/app/context/rooms-context';
+import { useEffect } from 'react';
 const Features = () => {
    const imagesArray = [livingroom, dining, lighting, beds];
 
    const { rooms, loading } = useRooms();
-   const [ref] = useKeenSlider<HTMLDivElement>({
-      loop: false,
-      mode: 'free',
-      slides: {
-         perView: 'auto',
-         spacing: 0,
+   const [sliderRef, sliderInstance] = useKeenSlider<HTMLDivElement>(
+      {
+         loop: false,
+         mode: 'free',
+         slides: {
+            perView: 'auto',
+            spacing: 0,
+         },
       },
-   });
+      []
+   );
+   useEffect;
+   useEffect(() => {
+      if (!loading && rooms?.length > 0) {
+         sliderInstance.current?.update();
+      }
+   }, [loading, rooms, sliderInstance]);
 
    return (
       <section className="flex items-center  justify-center py-10 px-4  ">
-         <div className="flex items-center gap-4 keen-slider " ref={ref}>
+         <div
+            className="flex items-center gap-4  keen-slider "
+            ref={!loading && rooms?.length > 0 ? sliderRef : null}
+         >
             {loading
                ? ''
                : rooms?.map((data: any, index: number) => (
