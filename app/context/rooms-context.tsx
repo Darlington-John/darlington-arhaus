@@ -52,13 +52,16 @@ export const RoomsProvider = ({ children }: { children: React.ReactNode }) => {
             console.error('Error during custom dispatch:', err);
          }
       };
-
-      fetchRooms();
+      (async () => {
+         await fetchRooms().catch((error) => console.error('Error', error));
+      })();
 
       const interval = setInterval(fetchRooms, 5 * 60 * 1000);
 
       const handleCustomDispatch = () => {
-         dispatchCustomEvent();
+         dispatchCustomEvent().catch((error) =>
+            console.error('Error fetching wishlist:', error)
+         );
       };
 
       window.addEventListener('customRoomsUpdate', handleCustomDispatch);

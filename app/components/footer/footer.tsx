@@ -202,7 +202,7 @@ const Footer = () => {
                      </p>
                      <div className="relative w-full flex items-center justify-center z-[5]">
                         <input
-                           className={`h-[50px] py-1 px-3 bg-white  text-black  text-sm  border  focus:ring-[1px]    ring-black  outline-none w-full border-dimGrey  duration-150  focus:rounded-sm z-[5] `}
+                           className="h-[50px] py-1 px-3 bg-white  text-black  text-sm  border  focus:ring-[1px]    ring-black  outline-none w-full border-dimGrey  duration-150  focus:rounded-sm z-[5]"
                            required
                            type="text"
                            placeholder="your email"

@@ -142,7 +142,7 @@ const Restock = (props: any) => {
             </h1>
          </div>
          <button
-            className={`flex items-center justify-center  gap-2 h-[40px]  bg-green text-center uppercase    text-xs text-white tracking-widest hover:ring-[2px] ring-green ring-offset-[1px] duration-150 `}
+            className="flex items-center justify-center  gap-2 h-[40px]  bg-green text-center uppercase    text-xs text-white tracking-widest hover:ring-[2px] ring-green ring-offset-[1px] duration-150"
             onClick={toggleRestock}
             disabled={!optionId}
          >
@@ -151,7 +151,7 @@ const Restock = (props: any) => {
          </button>
          {!productData?.options[selectedOption]?.stock?.in_stock && (
             <button
-               className={`flex items-center justify-center gap-2 h-[40px] text-center uppercase text-xs text-darkGrey tracking-widest hover:ring-[1px] ring-darkGrey ring-offset-[1px] duration-150 border `}
+               className="flex items-center justify-center gap-2 h-[40px] text-center uppercase text-xs text-darkGrey tracking-widest hover:ring-[1px] ring-darkGrey ring-offset-[1px] duration-150 border"
                onClick={toggleAvailablePopup}
                disabled={!optionId}
             >
@@ -160,9 +160,7 @@ const Restock = (props: any) => {
             </button>
          )}
          {restock && (
-            <div
-               className={`fixed bottom-[0px]  h-full w-full  z-[150] left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0 `}
-            >
+            <div className="fixed bottom-[0px]  h-full w-full  z-[150] left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0">
                <div
                   className={`w-[350px]     mid-popup   duration-300 ease-in-out flex flex-col py-6 px-6  gap-4   rounded-lg bg-greyGreen  items-center      ${
                      isRestockVisible ? '' : 'mid-popup-hidden'
@@ -177,7 +175,7 @@ const Restock = (props: any) => {
                            Restock option products
                         </h1>
                         <p className="text-sm neue-light  text-center">
-                           You're about to restock this option. All related
+                           You&apos;re about to restock this option. All related
                            values will be updated accordingly.
                         </p>
                      </div>
@@ -224,9 +222,7 @@ const Restock = (props: any) => {
             </div>
          )}
          {availablePopup && (
-            <div
-               className={`fixed bottom-[0px]  h-full w-full  z-[150] left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0 `}
-            >
+            <div className="fixed bottom-[0px]  h-full w-full  z-[150] left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0">
                <div
                   className={`w-[350px]     mid-popup   duration-300 ease-in-out flex flex-col py-6 px-6  gap-4   rounded-lg bg-greyGreen  items-center      ${
                      isAvailablePopupVisible ? '' : 'mid-popup-hidden'
@@ -241,7 +237,7 @@ const Restock = (props: any) => {
                            Set restocking date
                         </h1>
                         <p className="text-sm neue-light  text-center">
-                           You're about to set a restocking date for this
+                           You&apos;re about to set a restocking date for this
                            option. All related values will be updated
                            accordingly.
                         </p>

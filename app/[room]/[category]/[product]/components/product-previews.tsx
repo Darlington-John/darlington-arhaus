@@ -23,6 +23,19 @@ const ProductPreview = (props: any) => {
       isDragging.current = true;
       startX.current = 'touches' in e ? e.touches[0].clientX : e.clientX;
    };
+   const nextSlide = () =>
+      goToSlide(
+         (activeIndex + 1) %
+            productData?.options[selectedOption]?.previews.length
+      );
+
+   const prevSlide = () =>
+      goToSlide(
+         (activeIndex -
+            1 +
+            productData?.options[selectedOption]?.previews.length) %
+            productData?.options[selectedOption]?.previews.length
+      );
 
    const handleTouchMove = (e: React.TouchEvent | React.MouseEvent) => {
       if (!isDragging.current || startX.current === null) return;
@@ -42,20 +55,6 @@ const ProductPreview = (props: any) => {
       isDragging.current = false;
       startX.current = null;
    };
-
-   const nextSlide = () =>
-      goToSlide(
-         (activeIndex + 1) %
-            productData?.options[selectedOption]?.previews.length
-      );
-
-   const prevSlide = () =>
-      goToSlide(
-         (activeIndex -
-            1 +
-            productData?.options[selectedOption]?.previews.length) %
-            productData?.options[selectedOption]?.previews.length
-      );
 
    useEffect(() => {
       const slider = sliderRef.current;
@@ -90,7 +89,7 @@ const ProductPreview = (props: any) => {
             {productData?.options[selectedOption]?.previews.map((view: any) => (
                <img
                   src={view}
-                  className={`!w-full  !h-full   !max-w-[100%] !min-w-[100%] duration-300`}
+                  className=" !w-full  !h-full   !max-w-[100%] !min-w-[100%] duration-300"
                   style={{ transform: `translateX(-${activeIndex * 100}%)` }}
                   alt="preview"
                   key={view}
@@ -110,7 +109,7 @@ const ProductPreview = (props: any) => {
                   >
                      <img
                         src={view}
-                        className={`w-full   object-contain   dxs:!h-full dxs:w-auto     `}
+                        className="w-full   object-contain   dxs:!h-full dxs:w-auto     "
                         alt="preview"
                      />
                   </div>

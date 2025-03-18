@@ -119,7 +119,7 @@ const VerifyEmail = () => {
 
             <div className="flex flex-col gap-4 w-full  items-center">
                <h1 className="text-base   text-black  leading-6  text-center md:text-sm">
-                  We{`'`}ve sent you a mail at:
+                  We've sent you a mail at:
                   <br />
                   <span className="neue font-semibold text-sm  ">{email}</span>
                   <br />

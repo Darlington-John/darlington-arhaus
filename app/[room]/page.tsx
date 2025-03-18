@@ -34,7 +34,9 @@ const FurniturePage = () => {
          }
       };
       (async () => {
-         await fetchRoomData();
+         await fetchRoomData().catch((error) =>
+            console.error('Error fetching', error)
+         );
       })();
    }, [room]);
    const [sliderRef, sliderInstance] = useKeenSlider({

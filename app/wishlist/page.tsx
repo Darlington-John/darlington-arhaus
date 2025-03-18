@@ -35,10 +35,14 @@ const Wishlist = () => {
          }
       };
       (async () => {
-         await fetchWishlist();
+         await fetchWishlist().catch((error) =>
+            console.error('Error fetching wishlist:', error)
+         );
       })();
       const handleWishlistFetched = () => {
-         fetchWishlist();
+         fetchWishlist().catch((error) =>
+            console.error('Error fetching wishlist:', error)
+         );
       };
       window.addEventListener('wishlistFetched', handleWishlistFetched);
 

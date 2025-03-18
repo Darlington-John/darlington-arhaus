@@ -116,10 +116,10 @@ const Dimensions = (props: any) => {
    return (
       <div className="flex flex-col gap-2 py-3 items-start">
          <h1 className="text-xs neue-light">DIMENSIONS</h1>
-         <h1 className="text-sm  neue-light">
-            {productData?.dimensions?.width || '_'}" Width x
-            {productData?.dimensions?.depth || '_'}" Depth x
-            {productData?.dimensions?.height || '_'}" Height
+         <h1 className="text-sm neue-light">
+            {productData?.dimensions?.width || '_'}&quot; Width x
+            {productData?.dimensions?.depth || '_'}&quot; Depth x
+            {productData?.dimensions?.height || '_'}&quot; Height
          </h1>
          <button
             className="text-xs neue-light underline text-grey"

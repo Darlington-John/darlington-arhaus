@@ -24,7 +24,6 @@ const Features = () => {
       },
       []
    );
-   useEffect;
    useEffect(() => {
       if (!loading && rooms?.length > 0) {
          sliderInstance.current?.update();

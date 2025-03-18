@@ -12,45 +12,6 @@ import React, {
 import { usePopup } from '~/lib/utils/toggle-popups';
 
 export const Context = createContext<any>(null);
-
-export const ContextProvider = ({
-   children,
-}: {
-   children: React.ReactNode;
-}) => {
-   const [isOverlayOpen, setIsOverlayOpen] = useState<any>(false);
-   const [isAdminOverlayOpen, setIsAdminOverlayOpen] = useState(false);
-   const {
-      isVisible: isSearchBarVisible,
-      isActive: searchBar,
-      setIsActive: setSearchBar,
-      ref: searchBarRef,
-      togglePopup: toggleSearchBarPopup,
-   } = usePopup();
-   const linkname = usePathname();
-
-   // Wrap useSearchParams inside Suspense
-   return (
-      <Suspense fallback={null}>
-         <SearchParamsProvider
-            linkname={linkname}
-            isOverlayOpen={isOverlayOpen}
-            setIsOverlayOpen={setIsOverlayOpen}
-            isAdminOverlayOpen={isAdminOverlayOpen}
-            setIsAdminOverlayOpen={setIsAdminOverlayOpen}
-            isSearchBarVisible={isSearchBarVisible}
-            setSearchBar={setSearchBar}
-            searchBar={searchBar}
-            searchBarRef={searchBarRef}
-            toggleSearchBarPopup={toggleSearchBarPopup}
-         >
-            {children}
-         </SearchParamsProvider>
-      </Suspense>
-   );
-};
-
-// Separate Component to handle useSearchParams
 const SearchParamsProvider = ({
    children,
    linkname,
@@ -102,5 +63,43 @@ const SearchParamsProvider = ({
 
    return <Context.Provider value={providerValue}>{children}</Context.Provider>;
 };
+export const ContextProvider = ({
+   children,
+}: {
+   children: React.ReactNode;
+}) => {
+   const [isOverlayOpen, setIsOverlayOpen] = useState<any>(false);
+   const [isAdminOverlayOpen, setIsAdminOverlayOpen] = useState(false);
+   const {
+      isVisible: isSearchBarVisible,
+      isActive: searchBar,
+      setIsActive: setSearchBar,
+      ref: searchBarRef,
+      togglePopup: toggleSearchBarPopup,
+   } = usePopup();
+   const linkname = usePathname();
+
+   // Wrap useSearchParams inside Suspense
+   return (
+      <Suspense fallback={null}>
+         <SearchParamsProvider
+            linkname={linkname}
+            isOverlayOpen={isOverlayOpen}
+            setIsOverlayOpen={setIsOverlayOpen}
+            isAdminOverlayOpen={isAdminOverlayOpen}
+            setIsAdminOverlayOpen={setIsAdminOverlayOpen}
+            isSearchBarVisible={isSearchBarVisible}
+            setSearchBar={setSearchBar}
+            searchBar={searchBar}
+            searchBarRef={searchBarRef}
+            toggleSearchBarPopup={toggleSearchBarPopup}
+         >
+            {children}
+         </SearchParamsProvider>
+      </Suspense>
+   );
+};
+
+// Separate Component to handle useSearchParams
 
 export const MainContext = () => useContext(Context);

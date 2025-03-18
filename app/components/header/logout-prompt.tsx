@@ -20,8 +20,6 @@ const LogoutPrompt = (props: any) => {
          });
          setClearing(true);
          if (!response.ok) {
-            console.error(`Failed to clear cookies: ${response.statusText}`);
-            return;
          }
 
          window.dispatchEvent(new CustomEvent('userUpdated'));
@@ -53,7 +51,7 @@ const LogoutPrompt = (props: any) => {
                      <p className="text-sm neue-light text-center">
                         You are about to logout.
                         <br />
-                        Are you sure that's what you want?
+                        Are you sure that&apos;s what you want?
                      </p>
                   </div>
                </div>

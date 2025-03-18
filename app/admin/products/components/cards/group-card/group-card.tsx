@@ -33,8 +33,10 @@ const GroupCard = (props: any) => {
    const [groupEdit, setGroupEdit] = useState('');
    const [groupId, setGroupId] = useState('');
    const [submitting, setSubmitting] = useState(false);
-   const [sucessful, setSucessful] = useState(false);
 
+   const [sucessful, setSucessful] = useState(false);
+   const [file, setFile] = useState<File | null>(null);
+   const [imageUrl, setImageUrl] = useState<string | null>(null);
    const handleEditGroup = async (e: any) => {
       e.preventDefault();
       if (submitting) return;
@@ -103,8 +105,6 @@ const GroupCard = (props: any) => {
       });
    };
 
-   const [file, setFile] = useState<File | null>(null);
-   const [imageUrl, setImageUrl] = useState<string | null>(null);
    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setError('');
       const selectedFile = e.target.files?.[0];

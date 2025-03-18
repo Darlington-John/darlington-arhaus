@@ -16,7 +16,7 @@ const NoData = ({
                <div className=" flex-col py-20   w-full flex items-center justify-center p-6 ">
                   <Image src={boxEmpty} className="w-20" alt="Error icon" />
                   <p className="neue-thin text-2xl text-darkGrey uppercase text-black spaced text-center leading-none">
-                     No products in '{typeData?.type}'
+                     No products in &apos;{typeData?.type}&apos;
                   </p>
                   <button
                      className="flex items-center gap-2  h-[40px]  px-2 rounded-md bg-softGreen  duration-150 hover:ring hover:ring-[2px]  ring-softGreen ring-offset-2  mt-4"

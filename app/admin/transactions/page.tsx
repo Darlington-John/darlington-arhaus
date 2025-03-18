@@ -37,8 +37,11 @@ const Transactions = () => {
 
          setUsers(userDetails);
       };
-
-      if (orders?.length > 0) fetchUsers();
+      (async () => {
+         if (orders?.length > 0) {
+            await fetchUsers().catch((error) => console.error('Error', error));
+         }
+      })();
    }, [orders]);
 
    const rowProps = {

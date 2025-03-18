@@ -10,6 +10,19 @@ import { MainContext } from '~/app/context/context';
 import { useRooms } from '~/app/context/rooms-context';
 import { useRouter } from 'next/navigation';
 
+export const toggleOverlay = () => {
+   const overlayElement = document.getElementById('myOverlay');
+   if (!overlayElement) {
+      return;
+   }
+
+   if (overlayElement.style.width === '100%') {
+      overlayElement.style.width = '0%';
+   } else {
+      overlayElement.style.width = '100%';
+   }
+};
+
 type searchProps = {
    handleSearchChange: (
       event: React.ChangeEvent<HTMLInputElement>,
@@ -106,16 +119,3 @@ const Search = ({
 };
 
 export default Search;
-
-export const toggleOverlay = () => {
-   const overlayElement = document.getElementById('myOverlay');
-   if (!overlayElement) {
-      return;
-   }
-
-   if (overlayElement.style.width === '100%') {
-      overlayElement.style.width = '0%';
-   } else {
-      overlayElement.style.width = '100%';
-   }
-};

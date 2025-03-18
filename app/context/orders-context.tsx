@@ -53,12 +53,13 @@ export const OrdersProvider = ({ children }: { children: React.ReactNode }) => {
          }
       };
 
-      fetchOrders();
-
+      (async () => {
+         await fetchOrders().catch((error) => console.error('Error', error));
+      })();
       const interval = setInterval(fetchOrders, 5 * 60 * 1000);
 
       const handleCustomDispatch = () => {
-         dispatchCustomEvent();
+         dispatchCustomEvent().catch((error) => console.error('Error', error));
       };
 
       window.addEventListener('ordersUpdated', handleCustomDispatch);

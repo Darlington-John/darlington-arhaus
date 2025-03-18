@@ -1,15 +1,14 @@
 'use client';
 import Image from 'next/image';
 
-import eye from '~/public/icons/eye.svg';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import sucess from '~/public/icons/check.svg';
 import eyeoff from '~/public/icons/eye-off.svg';
-import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import Link from 'next/link';
+import eye from '~/public/icons/eye.svg';
 import googleIcon from '~/public/icons/google.svg';
 import loader from '~/public/images/loading.svg';
-import sucess from '~/public/icons/check.svg';
-import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 interface FormData {
    email: string;
    password: string;
@@ -21,6 +20,7 @@ const SignUp = () => {
    const [isPasswordVisible, setIsPasswordVisible] = useState<any>(false);
    const [error, setError] = useState('');
 
+   const router = useRouter();
    const togglePasswordVisibility = () => {
       setIsPasswordVisible(!isPasswordVisible);
    };
@@ -84,7 +84,6 @@ const SignUp = () => {
    };
    const redirectUrl =
       new URLSearchParams(window.location.search).get('redirect') || '/';
-   const router = useRouter();
    const handleLoginRedirect = () => {
       router.push(`/auth/log-in?redirect=${encodeURIComponent(redirectUrl)}`);
    };
@@ -104,13 +103,12 @@ const SignUp = () => {
                   <div className="flex flex-col gap-1 w-[50%] 2xs:w-full">
                      <label
                         htmlFor="firstName"
-                        className={`text-sm  neue   text-darkGrey
-                     `}
+                        className="text-sm  neue   text-darkGrey"
                      >
                         First Name
                      </label>
                      <input
-                        className={`h-[40px] py-1 px-3 bg-transparent  text-black  text-sm  border  focus:ring-[1px]    ring-black  outline-none w-full border-grey duration-150  focus:rounded-sm  `}
+                        className="h-[40px] py-1 px-3 bg-transparent  text-black  text-sm  border  focus:ring-[1px]    ring-black  outline-none w-full border-grey duration-150  focus:rounded-sm "
                         placeholder="Your first name"
                         type="text"
                         name="firstName"
@@ -123,13 +121,12 @@ const SignUp = () => {
                   <div className="flex flex-col gap-1 w-[50%] 2xs:w-full ">
                      <label
                         htmlFor="lastName"
-                        className={`text-sm  neue   text-darkGrey
-                     `}
+                        className="text-sm  neue   text-darkGrey"
                      >
                         Last Name
                      </label>
                      <input
-                        className={`h-[40px] py-1 px-3 bg-transparent  text-black  text-sm  border  focus:ring-[1px]    ring-black  outline-none w-full border-grey duration-150  focus:rounded-sm  `}
+                        className="h-[40px] py-1 px-3 bg-transparent  text-black  text-sm  border  focus:ring-[1px]    ring-black  outline-none w-full border-grey duration-150  focus:rounded-sm"
                         placeholder="Your last name"
                         type="text"
                         name="lastName"
@@ -169,8 +166,7 @@ const SignUp = () => {
                <div className="flex flex-col gap-1 w-full ">
                   <label
                      htmlFor="password"
-                     className={`text-sm    neue     text-darkGrey
-                     `}
+                     className="text-sm    neue     text-darkGrey"
                   >
                      Password
                   </label>

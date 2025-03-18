@@ -24,7 +24,7 @@ const ViewOverlay = (props: any) => {
 
    return (
       <div
-         className={`hidden  fixed  z-[120] top-o  left-0   ease duration-[0.4s]      h-full overflow-auto     xl:flex   items-start backdrop-brightness-[.6]  w-full  translate-x-[100%]  bg-white`}
+         className="hidden  fixed  z-[120] top-o  left-0   ease duration-[0.4s]      h-full overflow-auto     xl:flex   items-start backdrop-brightness-[.6]  w-full  translate-x-[100%]  bg-white"
          id="viewOverlay"
       >
          <div className="flex flex-col bg-white  h-full  relative w-full ">
@@ -62,9 +62,9 @@ const ViewOverlay = (props: any) => {
                <div className="flex flex-col gap-3">
                   {main?.categories.map((link: any, i: number) => (
                      <Link
-                        href={`/${currentDir}/${link._id}`}
+                        href={`/${currentDir}/${link?._id}`}
                         className="text-[15px]  neue     text-[#808080]  spaced  hover:text-green capitalize"
-                        key={i}
+                        key={link?._id}
                      >
                         {link?.content}
                      </Link>

@@ -256,7 +256,7 @@ const SearchPage = () => {
                }}
             >
                <h1 className="neue-thin text-[48px] text-darkGrey uppercase text-black  xl:text-4xl lg:text-3xl md:text-2xl spaced  ">
-                  showing results for '{searchTerm}'
+                  showing results for &apos;{searchTerm}&apos;
                </h1>
                {loading ? (
                   <div className="bg-white h-[40vh] w-full flex items-center justify-center opacity-20">

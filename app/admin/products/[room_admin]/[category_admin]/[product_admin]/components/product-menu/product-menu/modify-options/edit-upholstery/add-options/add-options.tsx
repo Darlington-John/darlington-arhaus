@@ -81,6 +81,7 @@ const AddOptions = (props: any) => {
    const featuresCheck = feature !== '' && fabrics !== '';
    const [files, setFiles] = useState<File[]>([]);
    const [imageUrls, setImageUrls] = useState<string[]>([]);
+   const filesInputRef = useRef<HTMLInputElement | null>(null);
    const productsOptionCheck = imageUrls.length > 0;
 
    const handleFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,10 +99,12 @@ const AddOptions = (props: any) => {
                })
          );
 
-         Promise.all(urlPromises).then((urls) => {
-            setImageUrls((prevUrls) => [...prevUrls, ...urls]);
-            setFiles((prevFiles) => [...prevFiles, ...fileArray]);
-         });
+         Promise.all(urlPromises)
+            .then((urls) => {
+               setImageUrls((prevUrls) => [...prevUrls, ...urls]);
+               setFiles((prevFiles) => [...prevFiles, ...fileArray]);
+            })
+            .catch((error) => console.error('Error loading files', error));
       }
 
       if (filesInputRef.current) {
@@ -113,7 +116,6 @@ const AddOptions = (props: any) => {
       setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
       setImageUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
    };
-   const filesInputRef = useRef<HTMLInputElement | null>(null);
 
    const handleFilesClick = () => {
       if (filesInputRef.current) {
@@ -275,9 +277,7 @@ const AddOptions = (props: any) => {
    return (
       <>
          {addOption && (
-            <div
-               className={`fixed bottom-[0px]  h-full w-full  z-50 left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0 `}
-            >
+            <div className="fixed bottom-[0px]  h-full w-full  z-50 left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0">
                <div
                   className={`w-[300px]         duration-300 ease-in-out flex flex-col py-6 px-6  gap-4   rounded-lg bg-greyGreen  items-center   mid-popup     ${
                      isAddOptionVisible ? '' : 'mid-popup-hidden'

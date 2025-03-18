@@ -15,7 +15,21 @@ import { MainContext } from '~/app/context/context';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import Link from 'next/link';
-const Header = (props: any) => {
+
+export const toggleOverlay = () => {
+   const overlayElement = document.getElementById('adminOverlay');
+   if (!overlayElement) {
+      return;
+   }
+
+   if (overlayElement.style.width === '100%') {
+      overlayElement.style.width = '0%';
+   } else {
+      overlayElement.style.width = '100%';
+   }
+};
+
+const Header = () => {
    const { user, loading } = useUser();
    const {
       isVisible: isProfileVisible,
@@ -192,16 +206,3 @@ const Header = (props: any) => {
 };
 
 export default Header;
-
-export const toggleOverlay = () => {
-   const overlayElement = document.getElementById('adminOverlay');
-   if (!overlayElement) {
-      return;
-   }
-
-   if (overlayElement.style.width === '100%') {
-      overlayElement.style.width = '0%';
-   } else {
-      overlayElement.style.width = '100%';
-   }
-};

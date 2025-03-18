@@ -91,7 +91,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
    return (
       <div className=" overflow-hidden   w-full flex flex-col     bg-white    px-2 lg:px-0 md:px-2 ">
          <button
-            className={`w-full  py-4   flex items-center justify-between  border-none pointer leading-none   flex-nowrap outline-none   `}
+            className="w-full  py-4   flex items-center justify-between  border-none pointer leading-none   flex-nowrap outline-none"
             onClick={onClick}
          >
             <p className="text-xs text-grey  uppercase neue-light ">

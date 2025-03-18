@@ -36,10 +36,9 @@ const VerifyEmail = () => {
             setSubmitting(false);
             setSucesssful(true);
             localStorage.setItem('email', email);
-            setTimeout(
-               (window.location.href = '/auth/forgot-password/verify-email'),
-               3000
-            );
+            setTimeout(() => {
+               window.location.href = '/auth/forgot-password/verify-email';
+            }, 2000);
          } else {
             const data = await res.json();
             setError(data.error || 'Reset password failed');
@@ -71,7 +70,7 @@ const VerifyEmail = () => {
                      Email
                   </label>
                   <input
-                     className={`h-[40px] py-1 px-3 bg-white  text-black  text-sm  border  focus:ring-[1px]    ring-black  outline-none w-full border-grey duration-150  focus:rounded-sm `}
+                     className="h-[40px] py-1 px-3 bg-white  text-black  text-sm  border  focus:ring-[1px]    ring-black  outline-none w-full border-grey duration-150  focus:rounded-sm"
                      id="email"
                      type="email"
                      value={email}

@@ -9,7 +9,7 @@ const HolidayDecorOff = () => {
    return (
       <section
          className="flex items-center justify-center  h-[80vh] bg-fixed bg-cover relative"
-         style={{ backgroundImage: `url(/images/decor.jpeg)` }}
+         style={{ backgroundImage: 'url(/images/decor.jpeg)' }}
       >
          <Image
             src={decorImg}

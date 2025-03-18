@@ -7,8 +7,6 @@ const DeleteCategory = (props: any) => {
       deleteCategory,
       deleteCategoryVisible,
       deleteCategoryRef,
-      error,
-      setError,
       handleDeleteCategory,
       sucessful,
       submitting,
@@ -16,9 +14,7 @@ const DeleteCategory = (props: any) => {
    } = props;
    return (
       deleteCategory && (
-         <div
-            className={`fixed bottom-[0px]  h-full w-full  z-50 left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0 `}
-         >
+         <div className="fixed bottom-[0px]  h-full w-full  z-50 left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0">
             <div
                className={`w-[350px]     mid-popup   duration-300 ease-in-out flex flex-col py-6 px-6  gap-4   rounded-lg bg-greyGreen  items-center      ${
                   deleteCategoryVisible ? '' : 'mid-popup-hidden'

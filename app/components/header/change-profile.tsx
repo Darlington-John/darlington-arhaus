@@ -49,7 +49,7 @@ const ChangeProfile = (props: any) => {
       formData.append('file', file);
       formData.append('userId', userId);
 
-      apiRequest({
+      await apiRequest({
          url: '/api/auth/upload-profile',
          method: 'POST',
          body: formData,

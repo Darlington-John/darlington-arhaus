@@ -42,7 +42,7 @@ const AdminOverlay = () => {
    }, [linkname, setIsAdminOverlayOpen]);
    return (
       <div
-         className={`hidden  fixed  z-40 top-o  left-0   ease-out duration-[0.2s]    overflow-hidden  h-full    lg:flex   items-start backdrop-brightness-[.6]  w-[0px]`}
+         className="hidden  fixed  z-40 top-o  left-0   ease-out duration-[0.2s]    overflow-hidden  h-full    lg:flex   items-start backdrop-brightness-[.6]  w-[0px]"
          id="adminOverlay"
       >
          <div className="flex flex-col bg-white h-full  relative" ref={ref}>

@@ -74,15 +74,15 @@ const Dropdown = (props: any) => {
                      {rooms?.[activeDropdown].content ?? ''}
                   </h1>
                   <div className="w-full flex justify-between flex-col gap-5 xl:gap-3 items-start ">
-                     {main?.categories.map((link: any, i: number) => (
+                     {main?.categories.map((link: any) => (
                         <Link
                            href={`/${currentDir}/${link._id}`}
                            className={`text-sm  neue     text-[#808080]  tracking-widest  hover:text-green capitalize   ${
                               linkname.startsWith(
-                                 `/${currentDir}/${link._id}`
+                                 `/${currentDir}/${link?._id}`
                               ) && ' text-green '
                            }`}
-                           key={i}
+                           key={link?._id}
                         >
                            {link?.content}
                         </Link>
@@ -138,7 +138,7 @@ const Dropdown = (props: any) => {
                {searchTerm && !noResults && displayedProducts.length > 0 && (
                   <div className="flex w-full items-center justify-between">
                      <h1 className="neue-light uppercase text-xs spaced dxs:text-[10px]">
-                        Products found {` `}({displayedProducts.length})
+                        Products found ({displayedProducts.length})
                      </h1>
                      {displayedProducts.length > num && (
                         <Link
@@ -152,7 +152,7 @@ const Dropdown = (props: any) => {
                )}
                {searchTerm && noResults && (
                   <p className="text-sm text-grey ">
-                     No products found for "{searchTerm}"
+                     No products found for &apos;{searchTerm}&apos;
                   </p>
                )}
                {displayedProducts.length > 0 ? (

@@ -31,7 +31,9 @@ const FurniturePage = () => {
          }
       };
       (async () => {
-         await fetchCategoryData();
+         await fetchCategoryData().catch((error) =>
+            console.error('Error fetching', error)
+         );
       })();
    }, [room, category]);
 

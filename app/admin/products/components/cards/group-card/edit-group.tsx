@@ -2,7 +2,6 @@
 import check from '~/public/icons/check.svg';
 import loader from '~/public/icons/loading-white.svg';
 import Image from 'next/image';
-import { apiRequest } from '~/lib/utils/api-request';
 import { usePopup } from '~/lib/utils/toggle-popups';
 import image from '~/public/icons/image.svg';
 import folder from '~/public/icons/folder.svg';
@@ -35,9 +34,7 @@ const EditGroup = (props: any) => {
    return (
       <>
          {editGroup && (
-            <div
-               className={`fixed bottom-[0px]  h-full w-full  z-50 left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0 `}
-            >
+            <div className="fixed bottom-[0px]  h-full w-full  z-50 left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0">
                <div
                   className={`w-[350px]     mid-popup   duration-300 ease-in-out flex flex-col py-6 px-6  gap-4   rounded-lg bg-greyGreen  items-center      ${
                      editGroupVisible ? '' : 'mid-popup-hidden'

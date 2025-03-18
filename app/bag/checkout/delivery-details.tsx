@@ -32,7 +32,7 @@ const DeliveryDetails = (props: any) => {
    } | null>(null);
    const [stationsLoading, setStationsLoading] = useState(true);
    const [stationError, setStationError] = useState<string | null>(null);
-   const getmarkets = async () => {
+   const getMarkets = async () => {
       setStationsLoading(true);
       setStationError(null);
 
@@ -46,6 +46,7 @@ const DeliveryDetails = (props: any) => {
          const permission = await navigator.permissions.query({
             name: 'geolocation' as PermissionName,
          });
+
          if (permission.state === 'denied') {
             setStationError(
                'Location access is blocked. Please enable it in browser settings.'
@@ -55,26 +56,31 @@ const DeliveryDetails = (props: any) => {
          }
 
          navigator.geolocation.getCurrentPosition(
-            async (position) => {
+            (position) => {
                const { latitude: lat, longitude: lng } = position.coords;
                setUserLocation({ lat, lng });
 
-               try {
-                  const res = await fetch(
-                     `/api/gas-stations?lat=${lat}&lng=${lng}`
-                  );
-                  if (!res.ok)
-                     throw new Error(
-                        `Error fetching gas stations: ${res.statusText}`
+               // Run the fetch request inside a separate function to avoid async issues
+               const fetchMarkets = async () => {
+                  try {
+                     const res = await fetch(
+                        `/api/gas-stations?lat=${lat}&lng=${lng}`
                      );
+                     if (!res.ok)
+                        throw new Error(
+                           `Error fetching gas stations: ${res.statusText}`
+                        );
 
-                  const data = await res.json();
-                  setMarkets(data);
-               } catch (err: any) {
-                  setStationError(err.message);
-               } finally {
-                  setStationsLoading(false);
-               }
+                     const data = await res.json();
+                     setMarkets(data);
+                  } catch (err: any) {
+                     setStationError(err.message);
+                  } finally {
+                     setStationsLoading(false);
+                  }
+               };
+
+               fetchMarkets(); // Call the async function
             },
             (error) => {
                if (error.code === 1) {
@@ -92,6 +98,7 @@ const DeliveryDetails = (props: any) => {
          setStationsLoading(false);
       }
    };
+
    const getWeekDate = (days: number) => {
       const date = new Date();
       date.setDate(date.getDate() + days);
@@ -182,7 +189,7 @@ const DeliveryDetails = (props: any) => {
                               className="text-xs uppercase text-[#264996] "
                               onClick={() => {
                                  togglePickupStations();
-                                 getmarkets();
+                                 getMarkets();
                               }}
                            >
                               {selectedStation
@@ -289,9 +296,7 @@ const DeliveryDetails = (props: any) => {
             </>
          )}
          {pickupStations && (
-            <div
-               className={`fixed bottom-[0px]  h-full w-full  z-[150] left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0 `}
-            >
+            <div className="fixed bottom-[0px]  h-full w-full  z-[150] left-0 flex  justify-center  items-center        backdrop-brightness-50  px-8     xs:px-0">
                <div
                   className={`w-[700px]     mid-popup   duration-300 ease-in-out flex flex-col py-6 px-6  gap-4   rounded-lg bg-greyGreen  md:w-[350px] md:px-3 md:py-3      ${
                      isPickupStationsVisible ? '' : 'mid-popup-hidden'

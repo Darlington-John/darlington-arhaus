@@ -39,10 +39,14 @@ const TypeProducts = () => {
          }
       };
       (async () => {
-         await fetchCategoryData();
+         await fetchCategoryData().catch((error) =>
+            console.error('Error fetching wishlist:', error)
+         );
       })();
       const handleCategoryFetched = () => {
-         fetchCategoryData();
+         fetchCategoryData().catch((error) =>
+            console.error('Error fetching wishlist:', error)
+         );
       };
       window.addEventListener('groupUpdated', handleCategoryFetched);
 

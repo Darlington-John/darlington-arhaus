@@ -17,7 +17,10 @@ export default function RootLayout({
             router.push('/');
          }
       };
-      handleRedirect();
+
+      (async () => {
+         await handleRedirect().catch((error) => console.error('Error', error));
+      })();
    }, [router]);
    return (
       <main className="relative   ">

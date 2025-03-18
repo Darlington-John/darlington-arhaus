@@ -133,7 +133,7 @@ const ProductMenu = (props: any) => {
             window.dispatchEvent(new CustomEvent('userUpdated'));
             window.dispatchEvent(new CustomEvent('usersUpdated'));
             setAdded(true);
-            toast.success(`Product added to bag`, {
+            toast.success('Product added to bag', {
                icon: <FaCheck color="white" />,
             });
          },

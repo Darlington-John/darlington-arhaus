@@ -165,10 +165,10 @@ const CartCard = (props: any) => {
                         } `}
                         ref={QuantityRef}
                      >
-                        {quantitiesList.map((qty: number, idx: number) => (
+                        {quantitiesList.map((qty: number) => (
                            <button
                               className="w-full   py-3 bg-white hover:bg-lightGrey text-xs text-grey  text-center "
-                              key={idx}
+                              key={qty}
                               onClick={() => updateQuantity(index, qty)}
                            >
                               {qty}
@@ -283,10 +283,10 @@ const CartCard = (props: any) => {
                            } `}
                            ref={QuantityRef}
                         >
-                           {quantitiesList.map((qty: number, idx: number) => (
+                           {quantitiesList.map((qty: number) => (
                               <button
                                  className="w-full   py-3 bg-white hover:bg-lightGrey text-xs text-grey  text-center "
-                                 key={idx}
+                                 key={qty}
                                  onClick={() => updateQuantity(index, qty)}
                               >
                                  {qty}

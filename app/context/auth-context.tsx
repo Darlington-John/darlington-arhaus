@@ -87,10 +87,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
          }
       };
 
-      fetchUser();
-
+      (async () => {
+         await fetchUser().catch((error) => console.error('Error', error));
+      })();
       const handleUserUpdated = () => {
-         fetchUser();
+         fetchUser().catch((error) => console.error('Error', error));
       };
 
       window.addEventListener('userUpdated', handleUserUpdated);
@@ -118,10 +119,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
          }
       };
 
-      fetchUsers();
-
+      (async () => {
+         await fetchUsers().catch((error) => console.error('Error', error));
+      })();
       const handleUsersUpdated = () => {
-         fetchUsers();
+         fetchUsers().catch((error) => console.error('Error', error));
       };
 
       window.addEventListener('usersUpdated', handleUsersUpdated);

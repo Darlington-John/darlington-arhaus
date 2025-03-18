@@ -38,10 +38,16 @@ const FurniturePage = () => {
          }
       };
       (async () => {
-         await fetchRoomData();
+         await fetchRoomData().catch((error) =>
+            console.error('Error fetching wishlist:', error)
+         );
       })();
       const handleRoomFetched = () => {
-         fetchRoomData();
+         (async () => {
+            await fetchRoomData().catch((error) =>
+               console.error('Error', error)
+            );
+         })();
       };
       window.addEventListener('dataUpdated', handleRoomFetched);
 
@@ -53,7 +59,6 @@ const FurniturePage = () => {
       isVisible: groupVisible,
       isActive: newGroup,
       togglePopup: toggleGroup,
-      ref: groupRef,
    } = usePopup();
    const {
       isVisible: previewVisible,

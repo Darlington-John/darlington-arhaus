@@ -36,10 +36,12 @@ const FurniturePage = () => {
          }
       };
       (async () => {
-         await fetchProductData();
+         await fetchProductData().catch((error) =>
+            console.error('Error', error)
+         );
       })();
       const handleProductFetched = () => {
-         fetchProductData();
+         fetchProductData().catch((error) => console.error('Error', error));
       };
       window.addEventListener('productFetched', handleProductFetched);
 

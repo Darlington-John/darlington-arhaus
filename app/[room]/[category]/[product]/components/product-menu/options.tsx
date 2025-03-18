@@ -28,7 +28,7 @@ const Options = (props: any) => {
             >
                <img
                   src={data?.option_image}
-                  className={`w-full h-full  object-cover`}
+                  className="w-full h-full  object-cover"
                />
             </div>
          ))}

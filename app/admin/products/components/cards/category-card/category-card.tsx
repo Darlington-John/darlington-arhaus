@@ -107,7 +107,7 @@ const CategoryCard = (props: any) => {
       const check = !categoryId;
       if (check) {
          setSubmitting(false);
-         setError(`Could'nt access product category`);
+         setError("Could'nt access product category");
          return;
       }
       setError('');

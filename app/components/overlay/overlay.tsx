@@ -12,6 +12,19 @@ import ViewOverlay from './view-overlay';
 import Link from 'next/link';
 import { useRooms } from '~/app/context/rooms-context';
 import { useKeenSlider } from 'keen-slider/react';
+
+export const toggleViewOverlay = () => {
+   const overlayElement = document.getElementById('viewOverlay');
+   if (!overlayElement) {
+      return;
+   }
+
+   if (overlayElement.style.transform === 'translateX(0%)') {
+      overlayElement.style.transform = 'translateX(100%)';
+   } else {
+      overlayElement.style.transform = 'translateX(0%)';
+   }
+};
 const Overlay = () => {
    const { rooms, loading } = useRooms();
    const { isOverlayOpen, setIsOverlayOpen, setCurrentDir, currentDir } =
@@ -57,7 +70,7 @@ const Overlay = () => {
    return (
       <>
          <div
-            className={`hidden  fixed  z-[100] top-0  left-0   ease duration-[0.4s]    overflow-x-hidden  h-full    xl:flex   items-start backdrop-brightness-[.6]  w-[0px]`}
+            className="hidden  fixed  z-[100] top-0  left-0   ease duration-[0.4s]    overflow-x-hidden  h-full    xl:flex   items-start backdrop-brightness-[.6]  w-[0px]"
             id="myOverlay"
          >
             <div className="flex flex-col bg-lighterGrey h-full  relative w-full ">
@@ -122,7 +135,7 @@ const Overlay = () => {
                                        `/${currentDir}/${category?._id}/${group?._id}`
                                     )
                                  }
-                                 className={`relative   shrink-0  overflow-hidden keen-slider__slide  xl:!w-[320px]  xl:h-[350px]  sm:!w-[240px] sm:h-[260px]`}
+                                 className="relative   shrink-0  overflow-hidden keen-slider__slide  xl:!w-[320px]  xl:h-[350px]  sm:!w-[240px] sm:h-[260px]"
                               >
                                  {group?.image && (
                                     <img
@@ -172,15 +185,3 @@ const Overlay = () => {
 };
 
 export default Overlay;
-export const toggleViewOverlay = () => {
-   const overlayElement = document.getElementById('viewOverlay');
-   if (!overlayElement) {
-      return;
-   }
-
-   if (overlayElement.style.transform === 'translateX(0%)') {
-      overlayElement.style.transform = 'translateX(100%)';
-   } else {
-      overlayElement.style.transform = 'translateX(0%)';
-   }
-};
