@@ -16,7 +16,6 @@ export async function POST(req: NextRequest) {
       // Extract data from formData
       const productId = formData.get('productId');
       const groupId = formData.get('groupId');
-      const typeId = formData.get('typeId');
       const name = formData.get('name');
       const price = formData.get('price');
       const cancelledPrice = formData.get('cancelledPrice');
@@ -24,7 +23,7 @@ export async function POST(req: NextRequest) {
       const secondImage = formData.get('secondImage');
 
       // Validate input
-      if (!productId || !groupId || !typeId || !name || !price) {
+      if (!productId || !groupId || !name || !price) {
          return NextResponse.json(
             { error: 'Missing required fields' },
             { status: 400 }
