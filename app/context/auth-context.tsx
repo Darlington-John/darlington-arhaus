@@ -50,7 +50,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
             await dispatch();
          };
 
-         runFunctionsInOrder();
+         runFunctionsInOrder().catch((error) => console.error('Error', error));
       }
    }, [session]);
    const clearCookies = async () => {
@@ -72,7 +72,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
             });
 
             if (!res.ok) {
-               clearCookies();
+               clearCookies().catch((error) => console.error('Error', error));
                setUser(null);
                return;
             }
@@ -80,7 +80,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
             const data = await res.json();
             setUser(data.user);
          } catch (err) {
-            clearCookies();
+            clearCookies().catch((error) => console.error('Error', error));
             setUser(null);
          } finally {
             setLoading(false);

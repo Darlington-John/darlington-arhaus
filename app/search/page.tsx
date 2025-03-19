@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 import Filters from '../[room]/[category]/[product]/components/filters/filters';
 import { useRooms } from '../context/rooms-context';
 import Fuse from 'fuse.js';
-import { ProductResult } from '../components/menu-header/house-hold-materials';
+import { ProductResult } from '../dummy-data';
 const SearchPage = () => {
    const { rooms, loading } = useRooms();
 

@@ -6,12 +6,12 @@ import React, {
    useMemo,
    useContext,
 } from 'react';
-import { houseHoldMaterials } from '../components/menu-header/test';
+import { roomsDummy } from '../dummy-data';
 
 export const RoomsContext = createContext<any>(null);
 
 export const RoomsProvider = ({ children }: { children: React.ReactNode }) => {
-   const [rooms, setRooms] = useState<any>(null);
+   const [rooms, setRooms] = useState<any>(roomsDummy);
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {
@@ -24,10 +24,9 @@ export const RoomsProvider = ({ children }: { children: React.ReactNode }) => {
             if (res.ok) {
                const data = await res.json();
                setRooms(data.rooms);
+               console.log('rooms', data.rooms);
             } else {
-               console.warn(
-                  'Failed to fetch Rooms. Using household materials.'
-               );
+               console.warn('Failed to fetch Rooms. Using default data.');
             }
          } catch (err) {
             console.error('Error fetching Rooms:', err);

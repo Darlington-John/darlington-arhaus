@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import ProductModel from '~/lib/models/rooms';
-import { houseHoldMaterials } from '~/app/components/menu-header/house-hold-materials';
+import { houseHoldMaterials } from '~/app/dummy-data';
 const MONGODB_URI = process.env.MONGODB_URI as string;
 export async function POST() {
    try {

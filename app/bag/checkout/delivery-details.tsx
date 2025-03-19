@@ -66,10 +66,9 @@ const DeliveryDetails = (props: any) => {
                      const res = await fetch(
                         `/api/gas-stations?lat=${lat}&lng=${lng}`
                      );
-                     if (!res.ok)
-                        throw new Error(
-                           `Error fetching gas stations: ${res.statusText}`
-                        );
+                     if (!res.ok) {
+                        setMarkets([]);
+                     }
 
                      const data = await res.json();
                      setMarkets(data);
@@ -373,20 +372,46 @@ const DeliveryDetails = (props: any) => {
                               ))}
                            </div>
                         ) : (
-                           <p className="w-full text-xs uppercase  neue-light   text-center">
-                              No pick-up stations found.
-                           </p>
+                           <div className="h-[350px] md:h-[350px] flex items-center justify-center">
+                              <p className="w-full text-xs uppercase  neue-light   text-center">
+                                 No pick-up stations found.
+                              </p>
+                           </div>
                         )}
                      </div>
-                     {markets.length > 0 && !stationError && (
+                     {markets.length > 0 &&
+                        !stationError &&
+                        !stationsLoading && (
+                           <div className="flex gap-4 w-full">
+                              <button
+                                 className="flex items-center justify-center  gap-2  h-[40px]  px-2 rounded-md bg-softGreen   duration-150 hover:ring hover:ring-[2px]  ring-softGreen  ring-offset-2  text-center w-[50%]"
+                                 onClick={togglePickupStations}
+                                 disabled={!selectedStation || stationsLoading}
+                              >
+                                 <span className=" text-white uppercase  text-xs  text-center">
+                                    Select station
+                                 </span>
+                              </button>
+                              <button
+                                 className="flex items-center justify-center  gap-2  h-[40px]  px-2 rounded-md bg-grey     duration-150 hover:ring hover:ring-[2px]  ring-grey    ring-offset-2  text-center w-[50%] text-white "
+                                 onClick={() => {
+                                    togglePickupStations();
+                                    setSelectedStation(null);
+                                 }}
+                              >
+                                 Cancel
+                              </button>
+                           </div>
+                        )}
+                     {!stationsLoading && markets.length === 0 && (
                         <div className="flex gap-4 w-full">
                            <button
                               className="flex items-center justify-center  gap-2  h-[40px]  px-2 rounded-md bg-softGreen   duration-150 hover:ring hover:ring-[2px]  ring-softGreen  ring-offset-2  text-center w-[50%]"
-                              onClick={togglePickupStations}
-                              disabled={!selectedStation || stationsLoading}
+                              onClick={getMarkets}
+                              // disabled={!selectedStation || stationsLoading}
                            >
                               <span className=" text-white uppercase  text-xs  text-center">
-                                 Select station
+                                 Search again
                               </span>
                            </button>
                            <button
