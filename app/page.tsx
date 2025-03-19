@@ -12,7 +12,9 @@ export default function Home() {
    const { isOverlayOpen } = MainContext();
 
    return (
-      <main className={`bg-brown  ${isOverlayOpen && 'overflow-hidden'}`}>
+      <main
+         className={`bg-brown  ${isOverlayOpen && 'overflow-hidden  Hahahaha'}`}
+      >
          <Hero />
          <HolidayDecorOff />
          <Features />
