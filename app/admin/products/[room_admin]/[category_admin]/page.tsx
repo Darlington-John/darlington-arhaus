@@ -268,13 +268,13 @@ const TypeProducts = () => {
 
          switch (selectedSort) {
             case 'Name: A-Z':
-               return a.name.localeCompare(b.name);
-            case 'Name: Z-A':
                return b.name.localeCompare(a.name);
+            case 'Name: Z-A':
+               return a.name.localeCompare(b.name);
             case 'Price: High-to-Low':
-               return priceB - priceA;
-            case 'Price: Low-to-High':
                return priceA - priceB;
+            case 'Price: Low-to-High':
+               return priceB - priceA;
             default:
                return 0;
          }
