@@ -10,7 +10,20 @@ export function POST(req: Request) {
       maxAge: -1,
       path: '/',
    });
-
+   response.cookies.set('__Secure-next-auth.session-token', '', {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      maxAge: -1,
+      path: '/',
+   });
+   response.cookies.set('__Host-next-auth.csrf-token', '', {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      maxAge: -1,
+      path: '/',
+   });
    response.cookies.set('token', '', {
       httpOnly: true,
       secure: true,

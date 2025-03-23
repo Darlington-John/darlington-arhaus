@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { serialize } from 'v8';
 import check from '~/public/icons/check.svg';
 import loader from '~/public/icons/loading-white.svg';
 import waving from '~/public/icons/waving.svg';
@@ -23,10 +24,12 @@ const LogoutPrompt = (props: any) => {
          }
 
          window.dispatchEvent(new CustomEvent('userUpdated'));
-         setTimeout(() => setSucessful(true), 3000);
+         setTimeout(() => setSucessful(true), 2000);
          setTimeout(() => toggleLogoutPromptPopup(), 4000);
-         setTimeout(() => setSucessful(false), 5000);
-         setTimeout(() => setSucessful(false), 5000);
+         setTimeout(() => setSucessful(false), 3000);
+         setTimeout(() => {
+            window.location.href = '/';
+         }, 3100);
       } catch (error) {
          console.error('Error clearing cookies:', error);
       }
