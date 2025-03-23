@@ -1,15 +1,36 @@
 import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
 
-export async function POST() {
-   // Get the cookies instance
-   const cookieStore = await cookies();
+export function POST(req: Request) {
+   const response = NextResponse.json({ message: 'Cookies cleared' });
 
-   // Delete NextAuth cookies
-   cookieStore.delete('next-auth.session-token');
-   cookieStore.delete('__Secure-next-auth.session-token');
-   cookieStore.delete('__Host-next-auth.csrf-token');
-   cookieStore.delete('token'); // If you also set a custom token
+   response.cookies.set('next-auth.session-token', '', {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      maxAge: -1,
+      path: '/',
+   });
+   response.cookies.set('__Secure-next-auth.session-token', '', {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'lax',
+      maxAge: -1,
+      path: '/',
+   });
+   response.cookies.set('__Host-next-auth.csrf-token', '', {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'lax',
+      maxAge: -1,
+      path: '/',
+   });
+   response.cookies.set('token', '', {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+      maxAge: -1,
+      path: '/',
+   });
 
-   return NextResponse.json({ message: 'Cookies cleared' });
+   return response;
 }
