@@ -33,6 +33,7 @@ const Login = () => {
    };
    const [submitting, setSubmitting] = useState(false);
    const [sucessful, setSucesssful] = useState(false);
+   const router = useRouter();
    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
@@ -61,8 +62,8 @@ const Login = () => {
             new URLSearchParams(window.location.search).get('redirect') || '/';
 
          setTimeout(() => {
-            window.location.href = redirectUrl;
-         }, 3000);
+            router.push(redirectUrl);
+         }, 2000);
       } catch (err: any) {
          setError(err.message || 'Something went wrong.');
       } finally {
@@ -90,7 +91,7 @@ const Login = () => {
    const handleSignIn = async () => {
       await signIn('google', { callbackUrl: redirectUrl });
    };
-   const router = useRouter();
+
    const handleSignupRedirect = () => {
       router.push(`/auth/sign-up?redirect=${encodeURIComponent(redirectUrl)}`);
    };

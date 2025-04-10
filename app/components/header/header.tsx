@@ -260,7 +260,7 @@ const Header = () => {
                         )}
                         <Image src={data.icon} alt={data.to} className="w-4" />
                         {linkname.startsWith(`${data?.to}`) && (
-                           <div className="bg-black absolute -bottom-1 h-[1px] w-full"></div>
+                           <span className="bg-black absolute -bottom-1 h-[1px] w-full"></span>
                         )}
                      </Link>
                   ))}

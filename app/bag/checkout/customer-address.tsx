@@ -84,7 +84,7 @@ const CustomerAddress = (props: any) => {
                         label="Additional Phone number"
                         value={addPhone}
                         setValue={setAddPhone}
-                        name="phone"
+                        name="phone2"
                         inputType="tel"
                         error={error}
                         setError={setError}
@@ -97,7 +97,7 @@ const CustomerAddress = (props: any) => {
                      setValue={setAddress}
                      error={error}
                      setError={setError}
-                     name="text"
+                     name="addressLine1"
                      errorContent="Please fill all required fields"
                      placeholder="Enter your delivery address"
                   />

@@ -55,43 +55,32 @@ const DeliveryDetails = (props: any) => {
             return;
          }
 
-         navigator.geolocation.getCurrentPosition(
-            (position) => {
-               const { latitude: lat, longitude: lng } = position.coords;
-               setUserLocation({ lat, lng });
+         navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude: lat, longitude: lng } = position.coords;
+            setUserLocation({ lat, lng });
 
-               // Run the fetch request inside a separate function to avoid async issues
-               const fetchMarkets = async () => {
-                  try {
-                     const res = await fetch(
-                        `/api/gas-stations?lat=${lat}&lng=${lng}`
-                     );
-                     if (!res.ok) {
-                        setMarkets([]);
-                     }
-
-                     const data = await res.json();
-                     setMarkets(data);
-                  } catch (err: any) {
-                     setStationError(err.message);
-                  } finally {
-                     setStationsLoading(false);
-                  }
-               };
-
-               fetchMarkets(); // Call the async function
-            },
-            (error) => {
-               if (error.code === 1) {
-                  setStationError(
-                     'Location access denied. Enable location in browser settings.'
+            // Run the fetch request inside a separate function to avoid async issues
+            const fetchMarkets = async () => {
+               try {
+                  const res = await fetch(
+                     `/api/gas-stations?lat=${lat}&lng=${lng}`
                   );
-               } else {
-                  setStationError(`Error getting location: ${error.message}`);
+                  if (!res.ok) {
+                     setMarkets([]);
+                     setStationError('An error occured');
+                  }
+
+                  const data = await res.json();
+                  setMarkets(data);
+               } catch (err: any) {
+                  setStationError(err.message);
+               } finally {
+                  setStationsLoading(false);
                }
-               setStationsLoading(false);
-            }
-         );
+            };
+
+            fetchMarkets(); // Call the async function
+         });
       } catch (err: any) {
          setStationError('Failed to check location permissions.');
          setStationsLoading(false);
@@ -374,35 +363,33 @@ const DeliveryDetails = (props: any) => {
                         ) : (
                            <div className="h-[350px] md:h-[350px] flex items-center justify-center">
                               <p className="w-full text-xs uppercase  neue-light   text-center">
-                                 No pick-up stations found.
+                                 {stationError || 'No pick-up stations found.'}
                               </p>
                            </div>
                         )}
                      </div>
-                     {markets.length > 0 &&
-                        !stationError &&
-                        !stationsLoading && (
-                           <div className="flex gap-4 w-full">
-                              <button
-                                 className="flex items-center justify-center  gap-2  h-[40px]  px-2 rounded-md bg-softGreen   duration-150 hover:ring hover:ring-[2px]  ring-softGreen  ring-offset-2  text-center w-[50%]"
-                                 onClick={togglePickupStations}
-                                 disabled={!selectedStation || stationsLoading}
-                              >
-                                 <span className=" text-white uppercase  text-xs  text-center">
-                                    Select station
-                                 </span>
-                              </button>
-                              <button
-                                 className="flex items-center justify-center  gap-2  h-[40px]  px-2 rounded-md bg-grey     duration-150 hover:ring hover:ring-[2px]  ring-grey    ring-offset-2  text-center w-[50%] text-white "
-                                 onClick={() => {
-                                    togglePickupStations();
-                                    setSelectedStation(null);
-                                 }}
-                              >
-                                 Cancel
-                              </button>
-                           </div>
-                        )}
+                     {markets.length > 0 && !stationsLoading && (
+                        <div className="flex gap-4 w-full">
+                           <button
+                              className="flex items-center justify-center  gap-2  h-[40px]  px-2 rounded-md bg-softGreen   duration-150 hover:ring hover:ring-[2px]  ring-softGreen  ring-offset-2  text-center w-[50%]"
+                              onClick={togglePickupStations}
+                              disabled={!selectedStation || stationsLoading}
+                           >
+                              <span className=" text-white uppercase  text-xs  text-center">
+                                 Select station
+                              </span>
+                           </button>
+                           <button
+                              className="flex items-center justify-center  gap-2  h-[40px]  px-2 rounded-md bg-grey     duration-150 hover:ring hover:ring-[2px]  ring-grey    ring-offset-2  text-center w-[50%] text-white "
+                              onClick={() => {
+                                 togglePickupStations();
+                                 setSelectedStation(null);
+                              }}
+                           >
+                              Cancel
+                           </button>
+                        </div>
+                     )}
                      {!stationsLoading && markets.length === 0 && (
                         <div className="flex gap-4 w-full">
                            <button
