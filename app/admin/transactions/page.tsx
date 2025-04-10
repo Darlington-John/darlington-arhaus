@@ -15,33 +15,50 @@ const Transactions = () => {
    const [errorFetching, setErrorFetching] = useState(false);
    useEffect(() => {
       const fetchUsers = async () => {
+         // Create a set of unique user IDs from orders
          const userIds = [...new Set(orders?.map((order) => order.user_id))];
+
+         // Initialize userDetails to store the fetched data
          const userDetails: Record<string, usersType> = {};
 
-         await Promise.all(
-            userIds?.map(async (userId) => {
-               try {
-                  const res = await fetch(`/api/admin/users/${userId}`);
+         try {
+            // Fetch user data for each userId in parallel
+            await Promise.all(
+               userIds.map(async (userId) => {
+                  try {
+                     const res = await fetch(`/api/admin/users/${userId}`);
 
-                  if (!res.ok) {
+                     if (!res.ok) {
+                        // Log any response errors, no need to set the error state here
+                        console.log(
+                           `Failed to fetch user ${userId}: ${res.statusText}`
+                        );
+                        return;
+                     }
+
+                     const data = await res.json();
+                     // Store user data keyed by userId
+                     userDetails[userId] = data;
+                  } catch (error) {
+                     console.error(`Error fetching user ${userId}:`, error);
+                     // Optionally you could set an error state to show UI feedback
                      setErrorFetching(true);
-                     return;
                   }
-                  const data = await res.json();
-                  userDetails[userId] = data;
-               } catch (error) {
-                  setErrorFetching(true);
-               }
-            })
-         );
+               })
+            );
 
-         setUsers(userDetails);
-      };
-      (async () => {
-         if (orders?.length > 0) {
-            await fetchUsers().catch((error) => console.error('Error', error));
+            // Set users after all data is fetched
+            setUsers(userDetails);
+         } catch (error) {
+            console.error('Error in fetchUsers function:', error);
+            setErrorFetching(true);
          }
-      })();
+      };
+
+      // Check if orders are available and trigger the fetchUsers function
+      if (orders?.length > 0) {
+         fetchUsers().catch((error) => console.error('Error', error));
+      }
    }, [orders]);
 
    const rowProps = {

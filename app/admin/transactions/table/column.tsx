@@ -28,8 +28,9 @@ const Column = (props: any) => {
             <div className=" w-[20%] shrink-0  px-3 py-2">
                <h1 className="text-xs   capitalize">
                   {' '}
-                  {props.users[props.data.user_id]?.firstName ||
-                     'Loading...'}{' '}
+                  {props.users[props.data.user_id]
+                     ? props.users[props.data.user_id].firstName || 'Loading...'
+                     : 'not found'}{' '}
                   {props.users[props.data.user_id]?.lastName || ''}
                </h1>
             </div>
