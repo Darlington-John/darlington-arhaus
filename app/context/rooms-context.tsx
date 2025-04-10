@@ -15,7 +15,7 @@ export const RoomsProvider = ({ children }: { children: React.ReactNode }) => {
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {
-      const fetchRooms = async () => {
+      const fetchRooms = async (context = 'initial') => {
          try {
             const res = await fetch('/api/rooms/fetch-rooms', {
                credentials: 'include',
@@ -24,43 +24,26 @@ export const RoomsProvider = ({ children }: { children: React.ReactNode }) => {
             if (res.ok) {
                const data = await res.json();
                setRooms(data.rooms);
-               console.log('rooms', data.rooms);
+               if (context === 'initial') console.log('rooms', data.rooms);
             } else {
-               console.warn('Failed to fetch Rooms. Using default data.');
+               console.warn(`Failed to fetch Rooms during ${context}.`);
             }
          } catch (err) {
-            console.error('Error fetching Rooms:', err);
+            console.error(`Error fetching Rooms during ${context}:`, err);
          } finally {
-            setLoading(false);
+            if (context === 'initial') setLoading(false);
          }
       };
 
-      const dispatchCustomEvent = async () => {
-         try {
-            const res = await fetch('/api/rooms/fetch-rooms', {
-               credentials: 'include',
-            });
+      // Initial fetch
+      fetchRooms();
 
-            if (res.ok) {
-               const data = await res.json();
-               setRooms(data.rooms);
-            } else {
-               console.warn('Failed to fetch Rooms during custom dispatch.');
-            }
-         } catch (err) {
-            console.error('Error during custom dispatch:', err);
-         }
-      };
-      (async () => {
-         await fetchRooms().catch((error) => console.error('Error', error));
-      })();
+      // Refetch every 5 minutes
+      const interval = setInterval(() => fetchRooms('interval'), 5 * 60 * 1000);
 
-      const interval = setInterval(fetchRooms, 5 * 60 * 1000);
-
+      // Handle custom event
       const handleCustomDispatch = () => {
-         dispatchCustomEvent().catch((error) =>
-            console.error('Error fetching wishlist:', error)
-         );
+         fetchRooms('customDispatch');
       };
 
       window.addEventListener('customRoomsUpdate', handleCustomDispatch);
