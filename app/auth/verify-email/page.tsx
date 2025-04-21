@@ -127,9 +127,9 @@ const VerifyEmail = () => {
                </h1>
                <div className="flex flex-col">
                   <div className="flex justify-between gap-2 w-full text-white">
-                     {verificationCode.map((digit, index) => (
+                     {verificationCode.slice(0, 4).map((digit, index) => (
                         <input
-                           key={digit}
+                           key={index}
                            id={`code-input-${index}`}
                            type="text"
                            value={digit}
